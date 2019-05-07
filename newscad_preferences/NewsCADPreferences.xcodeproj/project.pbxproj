@@ -1,0 +1,601 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 42;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		000000000000000000000003 /* NCPrefsDialogController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 00000000000000000000FFFE /* NCPrefsDialogController.cpp */; };
+		000000000000000000000004 /* NCPrefsDialogController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 00000000000000000000FFFE /* NCPrefsDialogController.cpp */; };
+		000000000000000000000005 /* NCPrefsDialogObserver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 00000000000000000000FFFD /* NCPrefsDialogObserver.cpp */; };
+		000000000000000000000006 /* NCPrefsDialogObserver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 00000000000000000000FFFD /* NCPrefsDialogObserver.cpp */; };
+		4B05EEE308840EA800D809E1 /* NCPrefsNoStrip.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4B05EECD08840E9300D809E1 /* NCPrefsNoStrip.cpp */; };
+		4B05EEE408840EA800D809E1 /* NCPrefsID.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4B05EECE08840E9400D809E1 /* NCPrefsID.cpp */; };
+		4B05EEE608840EA800D809E1 /* NCPrefs.fr in Sources */ = {isa = PBXBuildFile; fileRef = 4B05EED108840E9500D809E1 /* NCPrefs.fr */; };
+		4B05EEEC08840EA800D809E1 /* SDKPlugInEntrypoint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4B05EECC08840E9200D809E1 /* SDKPlugInEntrypoint.cpp */; };
+		4B05EEF008840EA800D809E1 /* NCPrefsNoStrip.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4B05EECD08840E9300D809E1 /* NCPrefsNoStrip.cpp */; };
+		4B05EEF108840EA800D809E1 /* NCPrefsID.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4B05EECE08840E9400D809E1 /* NCPrefsID.cpp */; };
+		4B05EEF308840EA800D809E1 /* NCPrefs.fr in Sources */ = {isa = PBXBuildFile; fileRef = 4B05EED108840E9500D809E1 /* NCPrefs.fr */; };
+		4B05EEF908840EA800D809E1 /* SDKPlugInEntrypoint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4B05EECC08840E9200D809E1 /* SDKPlugInEntrypoint.cpp */; };
+		4B05EEFE08840EAB00D809E1 /* InDesignModelAndUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B05EEFD08840EAB00D809E1 /* InDesignModelAndUI.framework */; };
+		4B05EF0008840EAB00D809E1 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B05EEFF08840EAB00D809E1 /* Carbon.framework */; };
+		4B05EF0208840EAD00D809E1 /* InDesignModelAndUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B05EF0108840EAD00D809E1 /* InDesignModelAndUI.framework */; };
+		4B05EF0308840EAD00D809E1 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B05EEFF08840EAB00D809E1 /* Carbon.framework */; };
+		678CE44709169D2700ED7B84 /* NCPrefs.fr.rsrc in Rez */ = {isa = PBXBuildFile; fileRef = 678CE44609169D2700ED7B84 /* NCPrefs.fr.rsrc */; };
+		67A8CF500905BA12008F0AC5 /* NCPrefs.fr.rsrc in Rez */ = {isa = PBXBuildFile; fileRef = 67A8CF4F0905BA12008F0AC5 /* NCPrefs.fr.rsrc */; };
+		918F885513F9F40700644E08 /* PrefsWorkhorse.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 918F885413F9F40700644E08 /* PrefsWorkhorse.cpp */; };
+		918F886113F9F46500644E08 /* PrefsWorkhorse.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 918F885413F9F40700644E08 /* PrefsWorkhorse.cpp */; };
+		91A41173140F0AB6009361F8 /* CL_Log_File.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 91A41161140F0AB6009361F8 /* CL_Log_File.cpp */; };
+		91A41174140F0AB6009361F8 /* XT_Assert.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 91A41163140F0AB6009361F8 /* XT_Assert.cpp */; };
+		91A41175140F0AB6009361F8 /* CL_NewsCAD_Prefs.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 91A41167140F0AB6009361F8 /* CL_NewsCAD_Prefs.cpp */; };
+		91A41176140F0AB6009361F8 /* buffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 91A4116A140F0AB6009361F8 /* buffer.cpp */; };
+		91A41177140F0AB6009361F8 /* parser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 91A4116D140F0AB6009361F8 /* parser.cpp */; };
+		91A41178140F0AB6009361F8 /* scanner.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 91A4116F140F0AB6009361F8 /* scanner.cpp */; };
+		91A41179140F0AB6009361F8 /* token.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 91A41171140F0AB6009361F8 /* token.cpp */; };
+		91A4117A140F0AB6009361F8 /* CL_Log_File.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 91A41161140F0AB6009361F8 /* CL_Log_File.cpp */; };
+		91A4117B140F0AB6009361F8 /* XT_Assert.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 91A41163140F0AB6009361F8 /* XT_Assert.cpp */; };
+		91A4117C140F0AB6009361F8 /* CL_NewsCAD_Prefs.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 91A41167140F0AB6009361F8 /* CL_NewsCAD_Prefs.cpp */; };
+		91A4117D140F0AB6009361F8 /* buffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 91A4116A140F0AB6009361F8 /* buffer.cpp */; };
+		91A4117E140F0AB6009361F8 /* parser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 91A4116D140F0AB6009361F8 /* parser.cpp */; };
+		91A4117F140F0AB6009361F8 /* scanner.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 91A4116F140F0AB6009361F8 /* scanner.cpp */; };
+		91A41180140F0AB6009361F8 /* token.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 91A41171140F0AB6009361F8 /* token.cpp */; };
+		91A41183140F0B12009361F8 /* global_data.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 91A41182140F0B12009361F8 /* global_data.cpp */; };
+		91A41184140F0B12009361F8 /* global_data.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 91A41182140F0B12009361F8 /* global_data.cpp */; };
+		91A4118D140F0B54009361F8 /* CL_NewsCadRect_ID.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 91A4118C140F0B54009361F8 /* CL_NewsCadRect_ID.cpp */; };
+		91A4118E140F0B54009361F8 /* CL_NewsCadRect_ID.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 91A4118C140F0B54009361F8 /* CL_NewsCadRect_ID.cpp */; };
+		CB57CB59086C9F0F0055B760 /* libPublicPlugIn.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CB57CB58086C9F0F0055B760 /* libPublicPlugIn.a */; };
+		CB57CC2E086CC5EC0055B760 /* libPublicPlugIn.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CB57CC2D086CC5EC0055B760 /* libPublicPlugIn.a */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXBuildRule section */
+		0B44966A088C66F500230491 /* PBXBuildRule */ = {
+			isa = PBXBuildRule;
+			compilerSpec = com.apple.compilers.proxy.script;
+			filePatterns = "*.fr";
+			fileType = pattern.proxy;
+			isEditable = 1;
+			outputFiles = (
+				"$(REZ_COLLECTOR_DIR)/$(INPUT_FILE_NAME).rsrc",
+			);
+			script = "\"../../../devtools/bin/odfrc-cmd\" -d RELEASE -d MACINTOSH -d __GNUC__ -o \"$REZ_COLLECTOR_DIR/$INPUT_FILE_NAME.rsrc\" \"$INPUT_FILE_PATH\"";
+		};
+		4B44966A088C66F500230491 /* PBXBuildRule */ = {
+			isa = PBXBuildRule;
+			compilerSpec = com.apple.compilers.proxy.script;
+			filePatterns = "*.fr";
+			fileType = pattern.proxy;
+			isEditable = 1;
+			outputFiles = (
+				"$(REZ_COLLECTOR_DIR)/$(INPUT_FILE_NAME).rsrc",
+			);
+			script = "\"../../../devtools/bin/odfrc-cmd\" -d DEBUG -d MACINTOSH -d __GNUC__ -o \"$REZ_COLLECTOR_DIR/$INPUT_FILE_NAME.rsrc\" \"$INPUT_FILE_PATH\"";
+		};
+/* End PBXBuildRule section */
+
+/* Begin PBXFileReference section */
+		00000000000000000000FFFD /* NCPrefsDialogObserver.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = NCPrefsDialogObserver.cpp; path = ../newscad_preferences/source/NCPrefsDialogObserver.cpp; sourceTree = SOURCE_ROOT; };
+		00000000000000000000FFFE /* NCPrefsDialogController.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = NCPrefsDialogController.cpp; path = ../newscad_preferences/source/NCPrefsDialogController.cpp; sourceTree = SOURCE_ROOT; };
+		4B05EEBA08840E8D00D809E1 /* NewsCADPreferences.InDesignPlugin */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = NewsCADPreferences.InDesignPlugin; sourceTree = BUILT_PRODUCTS_DIR; };
+		4B05EEC208840E8D00D809E1 /* NewsCADPreferences.InDesignPlugin */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = NewsCADPreferences.InDesignPlugin; sourceTree = BUILT_PRODUCTS_DIR; };
+		4B05EECC08840E9200D809E1 /* SDKPlugInEntrypoint.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = SDKPlugInEntrypoint.cpp; path = ../../../source/sdksamples/common/SDKPlugInEntrypoint.cpp; sourceTree = SOURCE_ROOT; };
+		4B05EECD08840E9300D809E1 /* NCPrefsNoStrip.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = NCPrefsNoStrip.cpp; path = ../newscad_preferences/source/NCPrefsNoStrip.cpp; sourceTree = SOURCE_ROOT; };
+		4B05EECE08840E9400D809E1 /* NCPrefsID.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = NCPrefsID.cpp; path = ../newscad_preferences/source/NCPrefsID.cpp; sourceTree = SOURCE_ROOT; };
+		4B05EECF08840E9400D809E1 /* NCPrefsID.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = NCPrefsID.h; path = ../newscad_preferences/headers/NCPrefsID.h; sourceTree = SOURCE_ROOT; };
+		4B05EED108840E9500D809E1 /* NCPrefs.fr */ = {isa = PBXFileReference; lastKnownFileType = text; name = NCPrefs.fr; path = ../newscad_preferences/source/NCPrefs.fr; sourceTree = SOURCE_ROOT; };
+		4B05EEFD08840EAB00D809E1 /* InDesignModelAndUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = InDesignModelAndUI.framework; path = ../../../build/mac/debug/packagefolder/contents/macos/InDesignModelAndUI.framework; sourceTree = SOURCE_ROOT; };
+		4B05EEFF08840EAB00D809E1 /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = /System/Library/Frameworks/Carbon.framework; sourceTree = "<absolute>"; };
+		4B05EF0108840EAD00D809E1 /* InDesignModelAndUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = InDesignModelAndUI.framework; path = ../../../build/mac/release/packagefolder/contents/macos/InDesignModelAndUI.framework; sourceTree = SOURCE_ROOT; };
+		678CE44609169D2700ED7B84 /* NCPrefs.fr.rsrc */ = {isa = PBXFileReference; lastKnownFileType = archive.rsrc; name = NCPrefs.fr.rsrc; path = build/NewsCADPreferences.build/Default/Release.build/ResourceManagerResources/NCPrefs.fr.rsrc; sourceTree = "<group>"; };
+		67A8CF4F0905BA12008F0AC5 /* NCPrefs.fr.rsrc */ = {isa = PBXFileReference; lastKnownFileType = archive.rsrc; name = NCPrefs.fr.rsrc; path = build/NewsCADPreferences.build/Default/Debug.build/ResourceManagerResources/NCPrefs.fr.rsrc; sourceTree = "<group>"; };
+		7FE5845808AD6DB8007DB654 /* NewsCADPreferencesPlugin_release.xcconfig */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.xcconfig; path = NewsCADPreferencesPlugin_release.xcconfig; sourceTree = SOURCE_ROOT; };
+		7FE5845908AD6DB8007DB654 /* NewsCADPreferencesPlugin_debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.xcconfig; path = NewsCADPreferencesPlugin_debug.xcconfig; sourceTree = SOURCE_ROOT; };
+		7FE5845A08AD6DB8007DB654 /* NewsCADPreferencesPlugin.xcconfig */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.xcconfig; path = NewsCADPreferencesPlugin.xcconfig; sourceTree = SOURCE_ROOT; };
+		918F884913F9F38C00644E08 /* IAbstractPrefsHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IAbstractPrefsHandler.h; path = ../IAbstractPrefsHandler.h; sourceTree = SOURCE_ROOT; };
+		918F885413F9F40700644E08 /* PrefsWorkhorse.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = PrefsWorkhorse.cpp; path = source/PrefsWorkhorse.cpp; sourceTree = "<group>"; };
+		91A41161140F0AB6009361F8 /* CL_Log_File.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CL_Log_File.cpp; sourceTree = "<group>"; };
+		91A41162140F0AB6009361F8 /* CL_Log_File.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CL_Log_File.h; sourceTree = "<group>"; };
+		91A41163140F0AB6009361F8 /* XT_Assert.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = XT_Assert.cpp; sourceTree = "<group>"; };
+		91A41164140F0AB6009361F8 /* XT_Assert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XT_Assert.h; sourceTree = "<group>"; };
+		91A41166140F0AB6009361F8 /* CL_Abstract_Prefs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CL_Abstract_Prefs.h; sourceTree = "<group>"; };
+		91A41167140F0AB6009361F8 /* CL_NewsCAD_Prefs.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CL_NewsCAD_Prefs.cpp; sourceTree = "<group>"; };
+		91A41168140F0AB6009361F8 /* CL_NewsCAD_Prefs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CL_NewsCAD_Prefs.h; sourceTree = "<group>"; };
+		91A4116A140F0AB6009361F8 /* buffer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = buffer.cpp; sourceTree = "<group>"; };
+		91A4116B140F0AB6009361F8 /* buffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = buffer.h; sourceTree = "<group>"; };
+		91A4116C140F0AB6009361F8 /* misc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = misc.h; sourceTree = "<group>"; };
+		91A4116D140F0AB6009361F8 /* parser.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = parser.cpp; sourceTree = "<group>"; };
+		91A4116E140F0AB6009361F8 /* parser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = parser.h; sourceTree = "<group>"; };
+		91A4116F140F0AB6009361F8 /* scanner.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = scanner.cpp; sourceTree = "<group>"; };
+		91A41170140F0AB6009361F8 /* scanner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = scanner.h; sourceTree = "<group>"; };
+		91A41171140F0AB6009361F8 /* token.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = token.cpp; sourceTree = "<group>"; };
+		91A41172140F0AB6009361F8 /* token.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = token.h; sourceTree = "<group>"; };
+		91A41181140F0B12009361F8 /* global_data.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = global_data.h; path = ../import_ad_geometry/headers/global_data.h; sourceTree = SOURCE_ROOT; };
+		91A41182140F0B12009361F8 /* global_data.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = global_data.cpp; path = ../import_ad_geometry/source/global_data.cpp; sourceTree = SOURCE_ROOT; };
+		91A4118A140F0B41009361F8 /* newscad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = newscad.h; path = ../shared/newscad.h; sourceTree = SOURCE_ROOT; };
+		91A4118B140F0B54009361F8 /* CL_NewsCadRect_ID.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CL_NewsCadRect_ID.h; path = ../import_ad_geometry/source/basic_classes/CL_NewsCadRect_ID.h; sourceTree = SOURCE_ROOT; };
+		91A4118C140F0B54009361F8 /* CL_NewsCadRect_ID.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CL_NewsCadRect_ID.cpp; path = ../import_ad_geometry/source/basic_classes/CL_NewsCadRect_ID.cpp; sourceTree = SOURCE_ROOT; };
+		CB57CB58086C9F0F0055B760 /* libPublicPlugIn.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPublicPlugIn.a; path = ../../../build/mac/debug/packagefolder/contents/macos/libs/libPublicPlugIn.a; sourceTree = SOURCE_ROOT; };
+		CB57CC2D086CC5EC0055B760 /* libPublicPlugIn.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPublicPlugIn.a; path = ../../../build/mac/release/packagefolder/contents/macos/libs/libPublicPlugIn.a; sourceTree = SOURCE_ROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		4B05EEB708840E8D00D809E1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CB57CB59086C9F0F0055B760 /* libPublicPlugIn.a in Frameworks */,
+				4B05EEFE08840EAB00D809E1 /* InDesignModelAndUI.framework in Frameworks */,
+				4B05EF0008840EAB00D809E1 /* Carbon.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4B05EEBF08840E8D00D809E1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CB57CC2E086CC5EC0055B760 /* libPublicPlugIn.a in Frameworks */,
+				4B05EF0208840EAD00D809E1 /* InDesignModelAndUI.framework in Frameworks */,
+				4B05EF0308840EAD00D809E1 /* Carbon.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		0B050A610883839D00D809E1 /* InDesign Libraries */ = {
+			isa = PBXGroup;
+			children = (
+				0B57CB36086C95110055B760 /* Debug */,
+				0B57CB35086C95090055B760 /* Release */,
+			);
+			name = "InDesign Libraries";
+			sourceTree = "<group>";
+		};
+		0B57CB35086C95090055B760 /* Release */ = {
+			isa = PBXGroup;
+			children = (
+				CB57CC2D086CC5EC0055B760 /* libPublicPlugIn.a */,
+			);
+			name = Release;
+			sourceTree = "<group>";
+		};
+		0B57CB36086C95110055B760 /* Debug */ = {
+			isa = PBXGroup;
+			children = (
+				CB57CB58086C9F0F0055B760 /* libPublicPlugIn.a */,
+			);
+			name = Debug;
+			sourceTree = "<group>";
+		};
+		4B05EEAD08840E8D00D809E1 = {
+			isa = PBXGroup;
+			children = (
+				4B05EEC708840E8D00D809E1 /* Source */,
+				4B05EED008840E9400D809E1 /* Resources */,
+				4B05EED308840E9600D809E1 /* Libraries */,
+				4B05EEFC08840EAB00D809E1 /* Frameworks */,
+				0B050A610883839D00D809E1 /* InDesign Libraries */,
+				7F52248408AFCE1F00139994 /* xcconfig */,
+				4B05EEBB08840E8D00D809E1 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		4B05EEBB08840E8D00D809E1 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				4B05EEBA08840E8D00D809E1 /* NewsCADPreferences.InDesignPlugin */,
+				4B05EEC208840E8D00D809E1 /* NewsCADPreferences.InDesignPlugin */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		4B05EEC708840E8D00D809E1 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				91A4118A140F0B41009361F8 /* newscad.h */,
+				918F884913F9F38C00644E08 /* IAbstractPrefsHandler.h */,
+				918F885413F9F40700644E08 /* PrefsWorkhorse.cpp */,
+				00000000000000000000FFFE /* NCPrefsDialogController.cpp */,
+				00000000000000000000FFFD /* NCPrefsDialogObserver.cpp */,
+				91A4115F140F0AB6009361F8 /* shared */,
+				4B05EECB08840E9100D809E1 /* Plugin */,
+			);
+			name = Source;
+			sourceTree = "<group>";
+		};
+		4B05EECB08840E9100D809E1 /* Plugin */ = {
+			isa = PBXGroup;
+			children = (
+				4B05EECC08840E9200D809E1 /* SDKPlugInEntrypoint.cpp */,
+				4B05EECD08840E9300D809E1 /* NCPrefsNoStrip.cpp */,
+				4B05EECF08840E9400D809E1 /* NCPrefsID.h */,
+				4B05EECE08840E9400D809E1 /* NCPrefsID.cpp */,
+			);
+			name = Plugin;
+			sourceTree = "<group>";
+		};
+		4B05EED008840E9400D809E1 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				67A8CF4F0905BA12008F0AC5 /* NCPrefs.fr.rsrc */,
+				678CE44609169D2700ED7B84 /* NCPrefs.fr.rsrc */,
+				4B05EED108840E9500D809E1 /* NCPrefs.fr */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		4B05EED308840E9600D809E1 /* Libraries */ = {
+			isa = PBXGroup;
+			children = (
+				4B05EED408840E9600D809E1 /* API */,
+				4B05EED908840E9C00D809E1 /* Compiler */,
+				4B05EEE008840EA300D809E1 /* System */,
+			);
+			name = Libraries;
+			sourceTree = "<group>";
+		};
+		4B05EED408840E9600D809E1 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				4B05EED508840E9600D809E1 /* Debug */,
+				4B05EED708840E9900D809E1 /* Release */,
+			);
+			name = API;
+			sourceTree = "<group>";
+		};
+		4B05EED508840E9600D809E1 /* Debug */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Debug;
+			sourceTree = "<group>";
+		};
+		4B05EED708840E9900D809E1 /* Release */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Release;
+			sourceTree = "<group>";
+		};
+		4B05EED908840E9C00D809E1 /* Compiler */ = {
+			isa = PBXGroup;
+			children = (
+				4B05EEDA08840E9C00D809E1 /* Debug */,
+				4B05EEDD08840EA000D809E1 /* Release */,
+			);
+			name = Compiler;
+			sourceTree = "<group>";
+		};
+		4B05EEDA08840E9C00D809E1 /* Debug */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Debug;
+			sourceTree = "<group>";
+		};
+		4B05EEDD08840EA000D809E1 /* Release */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Release;
+			sourceTree = "<group>";
+		};
+		4B05EEE008840EA300D809E1 /* System */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = System;
+			sourceTree = "<group>";
+		};
+		4B05EEFC08840EAB00D809E1 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				4B05EEFD08840EAB00D809E1 /* InDesignModelAndUI.framework */,
+				4B05EEFF08840EAB00D809E1 /* Carbon.framework */,
+				4B05EF0108840EAD00D809E1 /* InDesignModelAndUI.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		7F52248408AFCE1F00139994 /* xcconfig */ = {
+			isa = PBXGroup;
+			children = (
+				7FE5845808AD6DB8007DB654 /* NewsCADPreferencesPlugin_release.xcconfig */,
+				7FE5845908AD6DB8007DB654 /* NewsCADPreferencesPlugin_debug.xcconfig */,
+				7FE5845A08AD6DB8007DB654 /* NewsCADPreferencesPlugin.xcconfig */,
+			);
+			name = xcconfig;
+			sourceTree = "<group>";
+		};
+		91A4115F140F0AB6009361F8 /* shared */ = {
+			isa = PBXGroup;
+			children = (
+				91A41181140F0B12009361F8 /* global_data.h */,
+				91A41182140F0B12009361F8 /* global_data.cpp */,
+				91A4118B140F0B54009361F8 /* CL_NewsCadRect_ID.h */,
+				91A4118C140F0B54009361F8 /* CL_NewsCadRect_ID.cpp */,
+				91A41160140F0AB6009361F8 /* log+debug */,
+				91A41165140F0AB6009361F8 /* preferences */,
+				91A41169140F0AB6009361F8 /* xml */,
+			);
+			name = shared;
+			sourceTree = "<group>";
+		};
+		91A41160140F0AB6009361F8 /* log+debug */ = {
+			isa = PBXGroup;
+			children = (
+				91A41161140F0AB6009361F8 /* CL_Log_File.cpp */,
+				91A41162140F0AB6009361F8 /* CL_Log_File.h */,
+				91A41163140F0AB6009361F8 /* XT_Assert.cpp */,
+				91A41164140F0AB6009361F8 /* XT_Assert.h */,
+			);
+			name = "log+debug";
+			path = "../shared/log+debug";
+			sourceTree = SOURCE_ROOT;
+		};
+		91A41165140F0AB6009361F8 /* preferences */ = {
+			isa = PBXGroup;
+			children = (
+				91A41166140F0AB6009361F8 /* CL_Abstract_Prefs.h */,
+				91A41167140F0AB6009361F8 /* CL_NewsCAD_Prefs.cpp */,
+				91A41168140F0AB6009361F8 /* CL_NewsCAD_Prefs.h */,
+			);
+			name = preferences;
+			path = ../shared/preferences;
+			sourceTree = SOURCE_ROOT;
+		};
+		91A41169140F0AB6009361F8 /* xml */ = {
+			isa = PBXGroup;
+			children = (
+				91A4116A140F0AB6009361F8 /* buffer.cpp */,
+				91A4116B140F0AB6009361F8 /* buffer.h */,
+				91A4116C140F0AB6009361F8 /* misc.h */,
+				91A4116D140F0AB6009361F8 /* parser.cpp */,
+				91A4116E140F0AB6009361F8 /* parser.h */,
+				91A4116F140F0AB6009361F8 /* scanner.cpp */,
+				91A41170140F0AB6009361F8 /* scanner.h */,
+				91A41171140F0AB6009361F8 /* token.cpp */,
+				91A41172140F0AB6009361F8 /* token.h */,
+			);
+			name = xml;
+			path = ../shared/xml;
+			sourceTree = SOURCE_ROOT;
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		4B05EEB908840E8D00D809E1 /* Debug */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4B05EEC308840E8D00D809E1 /* Build configuration list for PBXNativeTarget "Debug" */;
+			buildPhases = (
+				4B05EEB508840E8D00D809E1 /* Sources */,
+				4B05EEB708840E8D00D809E1 /* Frameworks */,
+				4B05EEB808840E8D00D809E1 /* Rez */,
+				4B05EEB608840E8D00D809E1 /* Resources */,
+			);
+			buildRules = (
+				4B44966A088C66F500230491 /* PBXBuildRule */,
+			);
+			dependencies = (
+			);
+			name = Debug;
+			productName = Debug;
+			productReference = 4B05EEBA08840E8D00D809E1 /* NewsCADPreferences.InDesignPlugin */;
+			productType = "com.apple.product-type.framework";
+		};
+		4B05EEC108840E8D00D809E1 /* Release */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4B05EEC508840E8D00D809E1 /* Build configuration list for PBXNativeTarget "Release" */;
+			buildPhases = (
+				4B05EEBD08840E8D00D809E1 /* Sources */,
+				4B05EEBF08840E8D00D809E1 /* Frameworks */,
+				4B05EEC008840E8D00D809E1 /* Rez */,
+				4B05EEBE08840E8D00D809E1 /* Resources */,
+			);
+			buildRules = (
+				0B44966A088C66F500230491 /* PBXBuildRule */,
+			);
+			dependencies = (
+			);
+			name = Release;
+			productName = Release;
+			productReference = 4B05EEC208840E8D00D809E1 /* NewsCADPreferences.InDesignPlugin */;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		4B05EEAF08840E8D00D809E1 /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = 4B05EEB008840E8D00D809E1 /* Build configuration list for PBXProject "NewsCADPreferences" */;
+			compatibilityVersion = "Xcode 2.4";
+			hasScannedForEncodings = 0;
+			mainGroup = 4B05EEAD08840E8D00D809E1;
+			productRefGroup = 4B05EEBB08840E8D00D809E1 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				4B05EEB908840E8D00D809E1 /* Debug */,
+				4B05EEC108840E8D00D809E1 /* Release */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		4B05EEB608840E8D00D809E1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4B05EEBE08840E8D00D809E1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXRezBuildPhase section */
+		4B05EEB808840E8D00D809E1 /* Rez */ = {
+			isa = PBXRezBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				67A8CF500905BA12008F0AC5 /* NCPrefs.fr.rsrc in Rez */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4B05EEC008840E8D00D809E1 /* Rez */ = {
+			isa = PBXRezBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				678CE44709169D2700ED7B84 /* NCPrefs.fr.rsrc in Rez */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXRezBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		4B05EEB508840E8D00D809E1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4B05EEF308840EA800D809E1 /* NCPrefs.fr in Sources */,
+				000000000000000000000004 /* NCPrefsDialogController.cpp in Sources */,
+				000000000000000000000006 /* NCPrefsDialogObserver.cpp in Sources */,
+				4B05EEF008840EA800D809E1 /* NCPrefsNoStrip.cpp in Sources */,
+				4B05EEF108840EA800D809E1 /* NCPrefsID.cpp in Sources */,
+				4B05EEF908840EA800D809E1 /* SDKPlugInEntrypoint.cpp in Sources */,
+				918F885513F9F40700644E08 /* PrefsWorkhorse.cpp in Sources */,
+				91A41173140F0AB6009361F8 /* CL_Log_File.cpp in Sources */,
+				91A41174140F0AB6009361F8 /* XT_Assert.cpp in Sources */,
+				91A41175140F0AB6009361F8 /* CL_NewsCAD_Prefs.cpp in Sources */,
+				91A41176140F0AB6009361F8 /* buffer.cpp in Sources */,
+				91A41177140F0AB6009361F8 /* parser.cpp in Sources */,
+				91A41178140F0AB6009361F8 /* scanner.cpp in Sources */,
+				91A41179140F0AB6009361F8 /* token.cpp in Sources */,
+				91A41183140F0B12009361F8 /* global_data.cpp in Sources */,
+				91A4118D140F0B54009361F8 /* CL_NewsCadRect_ID.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4B05EEBD08840E8D00D809E1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4B05EEE608840EA800D809E1 /* NCPrefs.fr in Sources */,
+				000000000000000000000003 /* NCPrefsDialogController.cpp in Sources */,
+				000000000000000000000005 /* NCPrefsDialogObserver.cpp in Sources */,
+				4B05EEE308840EA800D809E1 /* NCPrefsNoStrip.cpp in Sources */,
+				4B05EEE408840EA800D809E1 /* NCPrefsID.cpp in Sources */,
+				4B05EEEC08840EA800D809E1 /* SDKPlugInEntrypoint.cpp in Sources */,
+				918F886113F9F46500644E08 /* PrefsWorkhorse.cpp in Sources */,
+				91A4117A140F0AB6009361F8 /* CL_Log_File.cpp in Sources */,
+				91A4117B140F0AB6009361F8 /* XT_Assert.cpp in Sources */,
+				91A4117C140F0AB6009361F8 /* CL_NewsCAD_Prefs.cpp in Sources */,
+				91A4117D140F0AB6009361F8 /* buffer.cpp in Sources */,
+				91A4117E140F0AB6009361F8 /* parser.cpp in Sources */,
+				91A4117F140F0AB6009361F8 /* scanner.cpp in Sources */,
+				91A41180140F0AB6009361F8 /* token.cpp in Sources */,
+				91A41184140F0B12009361F8 /* global_data.cpp in Sources */,
+				91A4118E140F0B54009361F8 /* CL_NewsCadRect_ID.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		4B05EEB108840E8D00D809E1 /* Default */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7FE5845A08AD6DB8007DB654 /* NewsCADPreferencesPlugin.xcconfig */;
+			buildSettings = {
+				GCC_ENABLE_CPP_EXCEPTIONS = YES;
+				GCC_ENABLE_CPP_RTTI = YES;
+				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(HEADER_SEARCH_PATHS)",
+					../../../source/precomp/msvc,
+					../../../source/public/interfaces/xmedia,
+					../../../source/public/interfaces/preflight,
+					../../../source/public/interfaces/ui,
+					../../../source/public/interfaces/tables,
+					../../../source/public/interfaces/text,
+					../../../source/public/interfaces/graphics,
+					../../../source/public/libs/widgetbin/includes,
+					../../../source/public/interfaces/workgroup,
+					../../../source/public/interfaces/interactive,
+					../../../source/public/interfaces/interactive/ui,
+					../../../source/public/interfaces/colormgmt,
+					../../../source/public/interfaces/utils,
+					../../../source/public/interfaces/incopy,
+					../../../source/public/interfaces/layout,
+					../../../source/public/interfaces/architecture,
+					../../../source/public/interfaces/cjk,
+					../../../source/precomp/common,
+					../../../source/public/includes,
+					../../../source/public/libs/publiclib/plugins,
+					../../../source/public/libs/publiclib/files,
+					../../../source/public/libs/publiclib/objectmodel,
+					../../../external/asl/boost_libraries,
+					../../../source/sdksamples/common,
+					../../../external/afl/includes,
+					../newscad_preferences/headers,
+				);
+				INFOPLIST_FILE = ../../../source/sdksamples/common/Info.plist;
+				INFOPLIST_PREPROCESS = YES;
+				PRODUCT_NAME = NewsCADPreferences;
+			};
+			name = Default;
+		};
+		4B05EEC408840E8D00D809E1 /* Default */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7FE5845908AD6DB8007DB654 /* NewsCADPreferencesPlugin_debug.xcconfig */;
+			buildSettings = {
+				BUILT_PRODUCTS_DIR = "$(SRCROOT)/../debug";
+				INFOPLIST_PREPROCESS = YES;
+			};
+			name = Default;
+		};
+		4B05EEC608840E8D00D809E1 /* Default */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7FE5845808AD6DB8007DB654 /* NewsCADPreferencesPlugin_release.xcconfig */;
+			buildSettings = {
+				BUILT_PRODUCTS_DIR = "$(SRCROOT)/../release";
+				INFOPLIST_PREPROCESS = YES;
+			};
+			name = Default;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		4B05EEB008840E8D00D809E1 /* Build configuration list for PBXProject "NewsCADPreferences" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4B05EEB108840E8D00D809E1 /* Default */,
+			);
+			defaultConfigurationIsVisible = 1;
+			defaultConfigurationName = Default;
+		};
+		4B05EEC308840E8D00D809E1 /* Build configuration list for PBXNativeTarget "Debug" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4B05EEC408840E8D00D809E1 /* Default */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Default;
+		};
+		4B05EEC508840E8D00D809E1 /* Build configuration list for PBXNativeTarget "Release" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4B05EEC608840E8D00D809E1 /* Default */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Default;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 4B05EEAF08840E8D00D809E1 /* Project object */;
+}

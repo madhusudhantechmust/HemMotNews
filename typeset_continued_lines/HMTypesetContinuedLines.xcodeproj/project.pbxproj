@@ -1,0 +1,741 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 42;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		4B05EEE308840EA800D809E1 /* TypesetContinuedLinesNoStrip.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4B05EECD08840E9300D809E1 /* TypesetContinuedLinesNoStrip.cpp */; };
+		4B05EEE408840EA800D809E1 /* TypesetContinuedLinesID.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4B05EECE08840E9400D809E1 /* TypesetContinuedLinesID.cpp */; };
+		4B05EEE608840EA800D809E1 /* TypesetContinuedLines.fr in Sources */ = {isa = PBXBuildFile; fileRef = 4B05EED108840E9500D809E1 /* TypesetContinuedLines.fr */; };
+		4B05EEEC08840EA800D809E1 /* SDKPlugInEntrypoint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4B05EECC08840E9200D809E1 /* SDKPlugInEntrypoint.cpp */; };
+		4B05EEF008840EA800D809E1 /* TypesetContinuedLinesNoStrip.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4B05EECD08840E9300D809E1 /* TypesetContinuedLinesNoStrip.cpp */; };
+		4B05EEF108840EA800D809E1 /* TypesetContinuedLinesID.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4B05EECE08840E9400D809E1 /* TypesetContinuedLinesID.cpp */; };
+		4B05EEF308840EA800D809E1 /* TypesetContinuedLines.fr in Sources */ = {isa = PBXBuildFile; fileRef = 4B05EED108840E9500D809E1 /* TypesetContinuedLines.fr */; };
+		4B05EEF908840EA800D809E1 /* SDKPlugInEntrypoint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4B05EECC08840E9200D809E1 /* SDKPlugInEntrypoint.cpp */; };
+		4B05EEFE08840EAB00D809E1 /* InDesignModelAndUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B05EEFD08840EAB00D809E1 /* InDesignModelAndUI.framework */; };
+		4B05EF0008840EAB00D809E1 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B05EEFF08840EAB00D809E1 /* Carbon.framework */; };
+		4B05EF0208840EAD00D809E1 /* InDesignModelAndUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B05EF0108840EAD00D809E1 /* InDesignModelAndUI.framework */; };
+		4B05EF0308840EAD00D809E1 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B05EEFF08840EAB00D809E1 /* Carbon.framework */; };
+		678CE44709169D2700ED7B84 /* TypesetContinuedLines.fr.rsrc in Rez */ = {isa = PBXBuildFile; fileRef = 678CE44609169D2700ED7B84 /* TypesetContinuedLines.fr.rsrc */; };
+		67A8CF500905BA12008F0AC5 /* TypesetContinuedLines.fr.rsrc in Rez */ = {isa = PBXBuildFile; fileRef = 67A8CF4F0905BA12008F0AC5 /* TypesetContinuedLines.fr.rsrc */; };
+		91052DAE1368E89B00BC4264 /* TypesetContinuedLines.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 91052DAD1368E89B00BC4264 /* TypesetContinuedLines.cpp */; };
+		918F84341384958400B244C3 /* CL_Display_Ad.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 918F84331384958400B244C3 /* CL_Display_Ad.cpp */; };
+		918F84581384974400B244C3 /* runarounds.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 918F84571384974400B244C3 /* runarounds.cpp */; };
+		918F84591384975100B244C3 /* runarounds.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 918F84571384974400B244C3 /* runarounds.cpp */; };
+		918F845E1384979400B244C3 /* CL_Display_Ad.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 918F84331384958400B244C3 /* CL_Display_Ad.cpp */; };
+		918F84671384ABF900B244C3 /* text_frame_options.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 918F84661384ABF900B244C3 /* text_frame_options.cpp */; };
+		918F84681384AC0200B244C3 /* text_frame_options.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 918F84661384ABF900B244C3 /* text_frame_options.cpp */; };
+		918F846D1384AC6D00B244C3 /* CL_Geometry_Importer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 918F846C1384AC6D00B244C3 /* CL_Geometry_Importer.cpp */; };
+		918F846E1384AC6D00B244C3 /* CL_Geometry_Importer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 918F846C1384AC6D00B244C3 /* CL_Geometry_Importer.cpp */; };
+		91936CFF1380797E00F7A418 /* CL_InDesignStyleSheetHelper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 91AA95A3137B615100694E3A /* CL_InDesignStyleSheetHelper.cpp */; };
+		91950858137A062000434A1D /* HM_Page.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 91950857137A062000434A1D /* HM_Page.cpp */; };
+		9195087F137A0C1400434A1D /* HM_Page.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 91950857137A062000434A1D /* HM_Page.cpp */; };
+		91991147136E11650041ACD4 /* TypesetContinuedLines.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 91052DAD1368E89B00BC4264 /* TypesetContinuedLines.cpp */; };
+		91991152136E1EC50041ACD4 /* CL_Page.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 91991151136E1EC50041ACD4 /* CL_Page.cpp */; };
+		91991160136E1F340041ACD4 /* Basic_Display_Ad.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9199115F136E1F340041ACD4 /* Basic_Display_Ad.cpp */; };
+		91991163136E1F460041ACD4 /* Basic_Page.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 91991162136E1F460041ACD4 /* Basic_Page.cpp */; };
+		91AA958D137B5FAF00694E3A /* HM_ContinuedLine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 91AA958C137B5FAF00694E3A /* HM_ContinuedLine.cpp */; };
+		91AA958E137B5FCD00694E3A /* HM_ContinuedLine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 91AA958C137B5FAF00694E3A /* HM_ContinuedLine.cpp */; };
+		91AA95A4137B615100694E3A /* CL_InDesignStyleSheetHelper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 91AA95A3137B615100694E3A /* CL_InDesignStyleSheetHelper.cpp */; };
+		91BB59721370E33D00F33ABB /* HM_ClassifiedHeading.CPP in Sources */ = {isa = PBXBuildFile; fileRef = 91BB59711370E33D00F33ABB /* HM_ClassifiedHeading.CPP */; };
+		91BB59731370E34000F33ABB /* HM_ClassifiedHeading.CPP in Sources */ = {isa = PBXBuildFile; fileRef = 91BB59711370E33D00F33ABB /* HM_ClassifiedHeading.CPP */; };
+		91EE6E58136F7C0500B724E4 /* Basic_Page.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 91991162136E1F460041ACD4 /* Basic_Page.cpp */; };
+		91EE6E70136F7D9600B724E4 /* SnpGraphicHelper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 91EE6E68136F7D9600B724E4 /* SnpGraphicHelper.cpp */; };
+		91EE6E71136F7D9600B724E4 /* SDKLayoutHelper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 91EE6E6A136F7D9600B724E4 /* SDKLayoutHelper.cpp */; };
+		91EE6E72136F7D9600B724E4 /* SnpTextModelHelper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 91EE6E6C136F7D9600B724E4 /* SnpTextModelHelper.cpp */; };
+		91EE6E73136F7D9600B724E4 /* SDKFileHelper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 91EE6E6E136F7D9600B724E4 /* SDKFileHelper.cpp */; };
+		91EE6E7A136F7DFB00B724E4 /* global_data.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 91EE6E79136F7DFB00B724E4 /* global_data.cpp */; };
+		91EE6E80136F7E1500B724E4 /* CL_Log_File.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 91EE6E7D136F7E1500B724E4 /* CL_Log_File.cpp */; };
+		91EE6E81136F7E1500B724E4 /* XT_Assert.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 91EE6E7F136F7E1500B724E4 /* XT_Assert.cpp */; };
+		91EE6E8B136F7E4400B724E4 /* CL_NewsCAD_Prefs.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 91EE6E89136F7E4400B724E4 /* CL_NewsCAD_Prefs.cpp */; };
+		91EE6E9B136F7E6800B724E4 /* buffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 91EE6E92136F7E6800B724E4 /* buffer.cpp */; };
+		91EE6E9C136F7E6800B724E4 /* parser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 91EE6E95136F7E6800B724E4 /* parser.cpp */; };
+		91EE6E9D136F7E6800B724E4 /* scanner.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 91EE6E97136F7E6800B724E4 /* scanner.cpp */; };
+		91EE6E9E136F7E6800B724E4 /* token.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 91EE6E99136F7E6800B724E4 /* token.cpp */; };
+		91EE6EA1136FA0CC00B724E4 /* Basic_Display_Ad.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9199115F136E1F340041ACD4 /* Basic_Display_Ad.cpp */; };
+		91EE6EA6136FA12B00B724E4 /* CL_NewsCadRect_ID.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 91EE6EA5136FA12B00B724E4 /* CL_NewsCadRect_ID.cpp */; };
+		91EE6EA9136FA15C00B724E4 /* CL_Document.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 91EE6EA8136FA15C00B724E4 /* CL_Document.cpp */; };
+		91EE6EAD136FA1B600B724E4 /* buffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 91EE6E92136F7E6800B724E4 /* buffer.cpp */; };
+		91EE6EB0136FA1C900B724E4 /* parser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 91EE6E95136F7E6800B724E4 /* parser.cpp */; };
+		91EE6EB2136FA1D700B724E4 /* scanner.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 91EE6E97136F7E6800B724E4 /* scanner.cpp */; };
+		91EE6EB4136FA1E300B724E4 /* token.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 91EE6E99136F7E6800B724E4 /* token.cpp */; };
+		91EE6EB6136FA21000B724E4 /* CL_NewsCAD_Prefs.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 91EE6E89136F7E4400B724E4 /* CL_NewsCAD_Prefs.cpp */; };
+		91EE6EB8136FA22C00B724E4 /* SDKFileHelper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 91EE6E6E136F7D9600B724E4 /* SDKFileHelper.cpp */; };
+		91EE6EB9136FA22E00B724E4 /* SDKLayoutHelper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 91EE6E6A136F7D9600B724E4 /* SDKLayoutHelper.cpp */; };
+		91EE6EBA136FA22F00B724E4 /* SnpGraphicHelper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 91EE6E68136F7D9600B724E4 /* SnpGraphicHelper.cpp */; };
+		91EE6EBB136FA23000B724E4 /* SnpTextModelHelper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 91EE6E6C136F7D9600B724E4 /* SnpTextModelHelper.cpp */; };
+		91EE6EC0136FA26D00B724E4 /* CL_Document.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 91EE6EA8136FA15C00B724E4 /* CL_Document.cpp */; };
+		91EE6EC1136FA26E00B724E4 /* CL_NewsCadRect_ID.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 91EE6EA5136FA12B00B724E4 /* CL_NewsCadRect_ID.cpp */; };
+		91EE6EC2136FA27000B724E4 /* CL_Page.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 91991151136E1EC50041ACD4 /* CL_Page.cpp */; };
+		91EE6EC6136FA29500B724E4 /* global_data.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 91EE6E79136F7DFB00B724E4 /* global_data.cpp */; };
+		91EE6EC8136FA2A100B724E4 /* CL_Log_File.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 91EE6E7D136F7E1500B724E4 /* CL_Log_File.cpp */; };
+		91EE6ECA136FA2AF00B724E4 /* XT_Assert.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 91EE6E7F136F7E1500B724E4 /* XT_Assert.cpp */; };
+		CB57CB59086C9F0F0055B760 /* libPublicPlugIn.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CB57CB58086C9F0F0055B760 /* libPublicPlugIn.a */; };
+		CB57CC2E086CC5EC0055B760 /* libPublicPlugIn.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CB57CC2D086CC5EC0055B760 /* libPublicPlugIn.a */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXBuildRule section */
+		0B44966A088C66F500230491 /* PBXBuildRule */ = {
+			isa = PBXBuildRule;
+			compilerSpec = com.apple.compilers.proxy.script;
+			filePatterns = "*.fr";
+			fileType = pattern.proxy;
+			isEditable = 1;
+			outputFiles = (
+				"$(REZ_COLLECTOR_DIR)/$(INPUT_FILE_NAME).rsrc",
+			);
+			script = "\"../../../devtools/bin/odfrc-cmd\" -d RELEASE -d MACINTOSH -d __GNUC__ -o \"$REZ_COLLECTOR_DIR/$INPUT_FILE_NAME.rsrc\" \"$INPUT_FILE_PATH\"";
+		};
+		4B44966A088C66F500230491 /* PBXBuildRule */ = {
+			isa = PBXBuildRule;
+			compilerSpec = com.apple.compilers.proxy.script;
+			filePatterns = "*.fr";
+			fileType = pattern.proxy;
+			isEditable = 1;
+			outputFiles = (
+				"$(REZ_COLLECTOR_DIR)/$(INPUT_FILE_NAME).rsrc",
+			);
+			script = "\"../../../devtools/bin/odfrc-cmd\" -d DEBUG -d MACINTOSH -d __GNUC__ -o \"$REZ_COLLECTOR_DIR/$INPUT_FILE_NAME.rsrc\" \"$INPUT_FILE_PATH\"";
+		};
+/* End PBXBuildRule section */
+
+/* Begin PBXFileReference section */
+		4B05EEBA08840E8D00D809E1 /* HMTypesetContinuedLines.InDesignPlugin */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = HMTypesetContinuedLines.InDesignPlugin; sourceTree = BUILT_PRODUCTS_DIR; };
+		4B05EEC208840E8D00D809E1 /* HMTypesetContinuedLines.InDesignPlugin */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = HMTypesetContinuedLines.InDesignPlugin; sourceTree = BUILT_PRODUCTS_DIR; };
+		4B05EECC08840E9200D809E1 /* SDKPlugInEntrypoint.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = SDKPlugInEntrypoint.cpp; path = ../../../source/sdksamples/common/SDKPlugInEntrypoint.cpp; sourceTree = SOURCE_ROOT; };
+		4B05EECD08840E9300D809E1 /* TypesetContinuedLinesNoStrip.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = TypesetContinuedLinesNoStrip.cpp; path = ../typeset_continued_lines/source/TypesetContinuedLinesNoStrip.cpp; sourceTree = SOURCE_ROOT; };
+		4B05EECE08840E9400D809E1 /* TypesetContinuedLinesID.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = TypesetContinuedLinesID.cpp; path = ../typeset_continued_lines/source/TypesetContinuedLinesID.cpp; sourceTree = SOURCE_ROOT; };
+		4B05EECF08840E9400D809E1 /* TypesetContinuedLinesID.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = TypesetContinuedLinesID.h; path = ../typeset_continued_lines/headers/TypesetContinuedLinesID.h; sourceTree = SOURCE_ROOT; };
+		4B05EED108840E9500D809E1 /* TypesetContinuedLines.fr */ = {isa = PBXFileReference; lastKnownFileType = text; name = TypesetContinuedLines.fr; path = ../typeset_continued_lines/source/TypesetContinuedLines.fr; sourceTree = SOURCE_ROOT; };
+		4B05EEFD08840EAB00D809E1 /* InDesignModelAndUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = InDesignModelAndUI.framework; path = ../../../build/mac/debug/packagefolder/contents/macos/InDesignModelAndUI.framework; sourceTree = SOURCE_ROOT; };
+		4B05EEFF08840EAB00D809E1 /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = /System/Library/Frameworks/Carbon.framework; sourceTree = "<absolute>"; };
+		4B05EF0108840EAD00D809E1 /* InDesignModelAndUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = InDesignModelAndUI.framework; path = ../../../build/mac/release/packagefolder/contents/macos/InDesignModelAndUI.framework; sourceTree = SOURCE_ROOT; };
+		678CE44609169D2700ED7B84 /* TypesetContinuedLines.fr.rsrc */ = {isa = PBXFileReference; lastKnownFileType = archive.rsrc; name = TypesetContinuedLines.fr.rsrc; path = build/HMTypesetContinuedLines.build/Default/Release.build/ResourceManagerResources/TypesetContinuedLines.fr.rsrc; sourceTree = "<group>"; };
+		67A8CF4F0905BA12008F0AC5 /* TypesetContinuedLines.fr.rsrc */ = {isa = PBXFileReference; lastKnownFileType = archive.rsrc; name = TypesetContinuedLines.fr.rsrc; path = build/HMTypesetContinuedLines.build/Default/Debug.build/ResourceManagerResources/TypesetContinuedLines.fr.rsrc; sourceTree = "<group>"; };
+		7FE5845808AD6DB8007DB654 /* HMTypesetContinuedLinesPlugin_release.xcconfig */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.xcconfig; path = HMTypesetContinuedLinesPlugin_release.xcconfig; sourceTree = SOURCE_ROOT; };
+		7FE5845908AD6DB8007DB654 /* HMTypesetContinuedLinesPlugin_debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.xcconfig; path = HMTypesetContinuedLinesPlugin_debug.xcconfig; sourceTree = SOURCE_ROOT; };
+		7FE5845A08AD6DB8007DB654 /* HMTypesetContinuedLinesPlugin.xcconfig */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.xcconfig; path = HMTypesetContinuedLinesPlugin.xcconfig; sourceTree = SOURCE_ROOT; };
+		91052DAD1368E89B00BC4264 /* TypesetContinuedLines.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TypesetContinuedLines.cpp; path = source/TypesetContinuedLines.cpp; sourceTree = "<group>"; };
+		91302CE31363D2AC006585B3 /* newscad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = newscad.h; path = ../shared/newscad.h; sourceTree = SOURCE_ROOT; };
+		91302CE41363D2D5006585B3 /* IAbstractContinuedLineTypesetter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IAbstractContinuedLineTypesetter.h; path = ../IAbstractContinuedLineTypesetter.h; sourceTree = SOURCE_ROOT; };
+		914DA2401367B0D40040035F /* TypesetContinuedLinesFactoryList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TypesetContinuedLinesFactoryList.h; path = source/TypesetContinuedLinesFactoryList.h; sourceTree = "<group>"; };
+		918F84321384957A00B244C3 /* CL_Display_Ad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CL_Display_Ad.h; path = ../import_ad_geometry/source/basic_classes/CL_Display_Ad.h; sourceTree = SOURCE_ROOT; };
+		918F84331384958400B244C3 /* CL_Display_Ad.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CL_Display_Ad.cpp; path = ../import_ad_geometry/source/basic_classes/CL_Display_Ad.cpp; sourceTree = SOURCE_ROOT; };
+		918F84571384974400B244C3 /* runarounds.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = runarounds.cpp; path = ../shared/runarounds.cpp; sourceTree = SOURCE_ROOT; };
+		918F84651384ABEF00B244C3 /* text_frame_options.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = text_frame_options.h; path = ../import_ad_geometry/source/text_frame_options.h; sourceTree = SOURCE_ROOT; };
+		918F84661384ABF900B244C3 /* text_frame_options.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = text_frame_options.cpp; path = ../import_ad_geometry/source/text_frame_options.cpp; sourceTree = SOURCE_ROOT; };
+		918F846B1384AC5F00B244C3 /* CL_Geometry_Importer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CL_Geometry_Importer.h; path = ../import_ad_geometry/source/basic_classes/CL_Geometry_Importer.h; sourceTree = SOURCE_ROOT; };
+		918F846C1384AC6D00B244C3 /* CL_Geometry_Importer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CL_Geometry_Importer.cpp; path = ../import_ad_geometry/source/basic_classes/CL_Geometry_Importer.cpp; sourceTree = SOURCE_ROOT; };
+		91950856137A061600434A1D /* HM_Page.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HM_Page.h; path = ../import_ad_geometry/source/hemmings/HM_Page.h; sourceTree = SOURCE_ROOT; };
+		91950857137A062000434A1D /* HM_Page.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = HM_Page.cpp; path = ../import_ad_geometry/source/hemmings/HM_Page.cpp; sourceTree = SOURCE_ROOT; };
+		91991150136E1EB60041ACD4 /* CL_Page.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CL_Page.h; path = ../import_ad_geometry/source/basic_classes/CL_Page.h; sourceTree = SOURCE_ROOT; };
+		91991151136E1EC50041ACD4 /* CL_Page.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CL_Page.cpp; path = ../import_ad_geometry/source/basic_classes/CL_Page.cpp; sourceTree = SOURCE_ROOT; };
+		9199115E136E1F260041ACD4 /* Basic_Display_Ad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Basic_Display_Ad.h; path = ../shared/Basic_Display_Ad.h; sourceTree = SOURCE_ROOT; };
+		9199115F136E1F340041ACD4 /* Basic_Display_Ad.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Basic_Display_Ad.cpp; path = ../shared/Basic_Display_Ad.cpp; sourceTree = SOURCE_ROOT; };
+		91991161136E1F460041ACD4 /* Basic_Page.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Basic_Page.h; path = ../shared/Basic_Page.h; sourceTree = SOURCE_ROOT; };
+		91991162136E1F460041ACD4 /* Basic_Page.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Basic_Page.cpp; path = ../shared/Basic_Page.cpp; sourceTree = SOURCE_ROOT; };
+		91AA958B137B5FA000694E3A /* HM_ContinuedLine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HM_ContinuedLine.h; path = source/HM_ContinuedLine.h; sourceTree = "<group>"; };
+		91AA958C137B5FAF00694E3A /* HM_ContinuedLine.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = HM_ContinuedLine.cpp; path = source/HM_ContinuedLine.cpp; sourceTree = "<group>"; };
+		91AA95A2137B614700694E3A /* CL_InDesignStyleSheetHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CL_InDesignStyleSheetHelper.h; path = ../shared/adobeutils/CL_InDesignStyleSheetHelper.h; sourceTree = SOURCE_ROOT; };
+		91AA95A3137B615100694E3A /* CL_InDesignStyleSheetHelper.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CL_InDesignStyleSheetHelper.cpp; path = ../shared/adobeutils/CL_InDesignStyleSheetHelper.cpp; sourceTree = SOURCE_ROOT; };
+		91BB59701370E27A00F33ABB /* HM_ClassifiedHeading.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HM_ClassifiedHeading.h; path = source/HM_ClassifiedHeading.h; sourceTree = "<group>"; };
+		91BB59711370E33D00F33ABB /* HM_ClassifiedHeading.CPP */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = HM_ClassifiedHeading.CPP; path = source/HM_ClassifiedHeading.CPP; sourceTree = "<group>"; };
+		91BE354F1422F63300C51FBC /* ImportGeomID.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ImportGeomID.h; path = ../import_ad_geometry/headers/ImportGeomID.h; sourceTree = SOURCE_ROOT; };
+		91EE6E67136F7D9600B724E4 /* SnpGraphicHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SnpGraphicHelper.h; path = ../../sdksamples/codesnippets/SnpGraphicHelper.h; sourceTree = SOURCE_ROOT; };
+		91EE6E68136F7D9600B724E4 /* SnpGraphicHelper.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SnpGraphicHelper.cpp; path = ../../sdksamples/codesnippets/SnpGraphicHelper.cpp; sourceTree = SOURCE_ROOT; };
+		91EE6E69136F7D9600B724E4 /* SDKLayoutHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SDKLayoutHelper.h; path = ../../sdksamples/common/SDKLayoutHelper.h; sourceTree = SOURCE_ROOT; };
+		91EE6E6A136F7D9600B724E4 /* SDKLayoutHelper.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SDKLayoutHelper.cpp; path = ../../sdksamples/common/SDKLayoutHelper.cpp; sourceTree = SOURCE_ROOT; };
+		91EE6E6B136F7D9600B724E4 /* SnpTextModelHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SnpTextModelHelper.h; path = ../../sdksamples/codesnippets/SnpTextModelHelper.h; sourceTree = SOURCE_ROOT; };
+		91EE6E6C136F7D9600B724E4 /* SnpTextModelHelper.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SnpTextModelHelper.cpp; path = ../../sdksamples/codesnippets/SnpTextModelHelper.cpp; sourceTree = SOURCE_ROOT; };
+		91EE6E6D136F7D9600B724E4 /* SnpTextAttrHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SnpTextAttrHelper.h; path = ../../sdksamples/codesnippets/SnpTextAttrHelper.h; sourceTree = SOURCE_ROOT; };
+		91EE6E6E136F7D9600B724E4 /* SDKFileHelper.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SDKFileHelper.cpp; path = ../../sdksamples/common/SDKFileHelper.cpp; sourceTree = SOURCE_ROOT; };
+		91EE6E6F136F7D9600B724E4 /* SDKFileHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SDKFileHelper.h; path = ../../sdksamples/common/SDKFileHelper.h; sourceTree = SOURCE_ROOT; };
+		91EE6E77136F7DFB00B724E4 /* tokenizer.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = tokenizer.hpp; path = ../../../external/asl/boost_libraries/boost/tokenizer.hpp; sourceTree = SOURCE_ROOT; };
+		91EE6E78136F7DFB00B724E4 /* global_data.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = global_data.h; path = ../import_ad_geometry/headers/global_data.h; sourceTree = SOURCE_ROOT; };
+		91EE6E79136F7DFB00B724E4 /* global_data.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = global_data.cpp; path = ../import_ad_geometry/source/global_data.cpp; sourceTree = SOURCE_ROOT; };
+		91EE6E7C136F7E1500B724E4 /* CL_Log_File.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CL_Log_File.h; path = "../shared/log+debug/CL_Log_File.h"; sourceTree = SOURCE_ROOT; };
+		91EE6E7D136F7E1500B724E4 /* CL_Log_File.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CL_Log_File.cpp; path = "../shared/log+debug/CL_Log_File.cpp"; sourceTree = SOURCE_ROOT; };
+		91EE6E7E136F7E1500B724E4 /* XT_Assert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XT_Assert.h; path = "../shared/log+debug/XT_Assert.h"; sourceTree = SOURCE_ROOT; };
+		91EE6E7F136F7E1500B724E4 /* XT_Assert.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = XT_Assert.cpp; path = "../shared/log+debug/XT_Assert.cpp"; sourceTree = SOURCE_ROOT; };
+		91EE6E88136F7E4400B724E4 /* CL_Abstract_Prefs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CL_Abstract_Prefs.h; sourceTree = "<group>"; };
+		91EE6E89136F7E4400B724E4 /* CL_NewsCAD_Prefs.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CL_NewsCAD_Prefs.cpp; sourceTree = "<group>"; };
+		91EE6E8A136F7E4400B724E4 /* CL_NewsCAD_Prefs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CL_NewsCAD_Prefs.h; sourceTree = "<group>"; };
+		91EE6E92136F7E6800B724E4 /* buffer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = buffer.cpp; sourceTree = "<group>"; };
+		91EE6E93136F7E6800B724E4 /* buffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = buffer.h; sourceTree = "<group>"; };
+		91EE6E94136F7E6800B724E4 /* misc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = misc.h; sourceTree = "<group>"; };
+		91EE6E95136F7E6800B724E4 /* parser.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = parser.cpp; sourceTree = "<group>"; };
+		91EE6E96136F7E6800B724E4 /* parser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = parser.h; sourceTree = "<group>"; };
+		91EE6E97136F7E6800B724E4 /* scanner.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = scanner.cpp; sourceTree = "<group>"; };
+		91EE6E98136F7E6800B724E4 /* scanner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = scanner.h; sourceTree = "<group>"; };
+		91EE6E99136F7E6800B724E4 /* token.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = token.cpp; sourceTree = "<group>"; };
+		91EE6E9A136F7E6800B724E4 /* token.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = token.h; sourceTree = "<group>"; };
+		91EE6EA4136FA12B00B724E4 /* CL_NewsCadRect_ID.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CL_NewsCadRect_ID.h; path = ../import_ad_geometry/source/basic_classes/CL_NewsCadRect_ID.h; sourceTree = SOURCE_ROOT; };
+		91EE6EA5136FA12B00B724E4 /* CL_NewsCadRect_ID.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CL_NewsCadRect_ID.cpp; path = ../import_ad_geometry/source/basic_classes/CL_NewsCadRect_ID.cpp; sourceTree = SOURCE_ROOT; };
+		91EE6EA7136FA15C00B724E4 /* CL_Document.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CL_Document.h; path = ../import_ad_geometry/source/basic_classes/CL_Document.h; sourceTree = SOURCE_ROOT; };
+		91EE6EA8136FA15C00B724E4 /* CL_Document.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CL_Document.cpp; path = ../import_ad_geometry/source/basic_classes/CL_Document.cpp; sourceTree = SOURCE_ROOT; };
+		CB57CB58086C9F0F0055B760 /* libPublicPlugIn.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPublicPlugIn.a; path = ../../../build/mac/debug/packagefolder/contents/macos/libs/libPublicPlugIn.a; sourceTree = SOURCE_ROOT; };
+		CB57CC2D086CC5EC0055B760 /* libPublicPlugIn.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPublicPlugIn.a; path = ../../../build/mac/release/packagefolder/contents/macos/libs/libPublicPlugIn.a; sourceTree = SOURCE_ROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		4B05EEB708840E8D00D809E1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CB57CB59086C9F0F0055B760 /* libPublicPlugIn.a in Frameworks */,
+				4B05EEFE08840EAB00D809E1 /* InDesignModelAndUI.framework in Frameworks */,
+				4B05EF0008840EAB00D809E1 /* Carbon.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4B05EEBF08840E8D00D809E1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CB57CC2E086CC5EC0055B760 /* libPublicPlugIn.a in Frameworks */,
+				4B05EF0208840EAD00D809E1 /* InDesignModelAndUI.framework in Frameworks */,
+				4B05EF0308840EAD00D809E1 /* Carbon.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		0B050A610883839D00D809E1 /* InDesign Libraries */ = {
+			isa = PBXGroup;
+			children = (
+				0B57CB36086C95110055B760 /* Debug */,
+				0B57CB35086C95090055B760 /* Release */,
+			);
+			name = "InDesign Libraries";
+			sourceTree = "<group>";
+		};
+		0B57CB35086C95090055B760 /* Release */ = {
+			isa = PBXGroup;
+			children = (
+				CB57CC2D086CC5EC0055B760 /* libPublicPlugIn.a */,
+			);
+			name = Release;
+			sourceTree = "<group>";
+		};
+		0B57CB36086C95110055B760 /* Debug */ = {
+			isa = PBXGroup;
+			children = (
+				CB57CB58086C9F0F0055B760 /* libPublicPlugIn.a */,
+			);
+			name = Debug;
+			sourceTree = "<group>";
+		};
+		4B05EEAD08840E8D00D809E1 = {
+			isa = PBXGroup;
+			children = (
+				4B05EEC708840E8D00D809E1 /* Source */,
+				4B05EED008840E9400D809E1 /* Resources */,
+				4B05EED308840E9600D809E1 /* Libraries */,
+				4B05EEFC08840EAB00D809E1 /* Frameworks */,
+				0B050A610883839D00D809E1 /* InDesign Libraries */,
+				7F52248408AFCE1F00139994 /* xcconfig */,
+				4B05EEBB08840E8D00D809E1 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		4B05EEBB08840E8D00D809E1 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				4B05EEBA08840E8D00D809E1 /* HMTypesetContinuedLines.InDesignPlugin */,
+				4B05EEC208840E8D00D809E1 /* HMTypesetContinuedLines.InDesignPlugin */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		4B05EEC708840E8D00D809E1 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				91EE6EA3136FA0FE00B724E4 /* basic_classes */,
+				91EE6E66136F7D9600B724E4 /* adobe */,
+				91EE6E60136F7D2200B724E4 /* shared */,
+				91302CE31363D2AC006585B3 /* newscad.h */,
+				91BE354F1422F63300C51FBC /* ImportGeomID.h */,
+				91EE6E77136F7DFB00B724E4 /* tokenizer.hpp */,
+				91EE6E78136F7DFB00B724E4 /* global_data.h */,
+				91EE6E79136F7DFB00B724E4 /* global_data.cpp */,
+				91EE6E7C136F7E1500B724E4 /* CL_Log_File.h */,
+				91EE6E7D136F7E1500B724E4 /* CL_Log_File.cpp */,
+				91EE6E7E136F7E1500B724E4 /* XT_Assert.h */,
+				91EE6E7F136F7E1500B724E4 /* XT_Assert.cpp */,
+				91302CE41363D2D5006585B3 /* IAbstractContinuedLineTypesetter.h */,
+				91052DAD1368E89B00BC4264 /* TypesetContinuedLines.cpp */,
+				91BB59701370E27A00F33ABB /* HM_ClassifiedHeading.h */,
+				91BB59711370E33D00F33ABB /* HM_ClassifiedHeading.CPP */,
+				91950856137A061600434A1D /* HM_Page.h */,
+				91950857137A062000434A1D /* HM_Page.cpp */,
+				91AA958B137B5FA000694E3A /* HM_ContinuedLine.h */,
+				91AA958C137B5FAF00694E3A /* HM_ContinuedLine.cpp */,
+				91AA95A2137B614700694E3A /* CL_InDesignStyleSheetHelper.h */,
+				91AA95A3137B615100694E3A /* CL_InDesignStyleSheetHelper.cpp */,
+				4B05EECB08840E9100D809E1 /* Plugin */,
+			);
+			name = Source;
+			sourceTree = "<group>";
+		};
+		4B05EECB08840E9100D809E1 /* Plugin */ = {
+			isa = PBXGroup;
+			children = (
+				4B05EECC08840E9200D809E1 /* SDKPlugInEntrypoint.cpp */,
+				4B05EECD08840E9300D809E1 /* TypesetContinuedLinesNoStrip.cpp */,
+				914DA2401367B0D40040035F /* TypesetContinuedLinesFactoryList.h */,
+				4B05EECF08840E9400D809E1 /* TypesetContinuedLinesID.h */,
+				4B05EECE08840E9400D809E1 /* TypesetContinuedLinesID.cpp */,
+			);
+			name = Plugin;
+			sourceTree = "<group>";
+		};
+		4B05EED008840E9400D809E1 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				67A8CF4F0905BA12008F0AC5 /* TypesetContinuedLines.fr.rsrc */,
+				678CE44609169D2700ED7B84 /* TypesetContinuedLines.fr.rsrc */,
+				4B05EED108840E9500D809E1 /* TypesetContinuedLines.fr */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		4B05EED308840E9600D809E1 /* Libraries */ = {
+			isa = PBXGroup;
+			children = (
+				4B05EED408840E9600D809E1 /* API */,
+				4B05EED908840E9C00D809E1 /* Compiler */,
+				4B05EEE008840EA300D809E1 /* System */,
+			);
+			name = Libraries;
+			sourceTree = "<group>";
+		};
+		4B05EED408840E9600D809E1 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				4B05EED508840E9600D809E1 /* Debug */,
+				4B05EED708840E9900D809E1 /* Release */,
+			);
+			name = API;
+			sourceTree = "<group>";
+		};
+		4B05EED508840E9600D809E1 /* Debug */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Debug;
+			sourceTree = "<group>";
+		};
+		4B05EED708840E9900D809E1 /* Release */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Release;
+			sourceTree = "<group>";
+		};
+		4B05EED908840E9C00D809E1 /* Compiler */ = {
+			isa = PBXGroup;
+			children = (
+				4B05EEDA08840E9C00D809E1 /* Debug */,
+				4B05EEDD08840EA000D809E1 /* Release */,
+			);
+			name = Compiler;
+			sourceTree = "<group>";
+		};
+		4B05EEDA08840E9C00D809E1 /* Debug */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Debug;
+			sourceTree = "<group>";
+		};
+		4B05EEDD08840EA000D809E1 /* Release */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Release;
+			sourceTree = "<group>";
+		};
+		4B05EEE008840EA300D809E1 /* System */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = System;
+			sourceTree = "<group>";
+		};
+		4B05EEFC08840EAB00D809E1 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				4B05EEFD08840EAB00D809E1 /* InDesignModelAndUI.framework */,
+				4B05EEFF08840EAB00D809E1 /* Carbon.framework */,
+				4B05EF0108840EAD00D809E1 /* InDesignModelAndUI.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		7F52248408AFCE1F00139994 /* xcconfig */ = {
+			isa = PBXGroup;
+			children = (
+				7FE5845808AD6DB8007DB654 /* HMTypesetContinuedLinesPlugin_release.xcconfig */,
+				7FE5845908AD6DB8007DB654 /* HMTypesetContinuedLinesPlugin_debug.xcconfig */,
+				7FE5845A08AD6DB8007DB654 /* HMTypesetContinuedLinesPlugin.xcconfig */,
+			);
+			name = xcconfig;
+			sourceTree = "<group>";
+		};
+		918F84371384962300B244C3 /* adobeutils */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = adobeutils;
+			sourceTree = "<group>";
+		};
+		91EE6E60136F7D2200B724E4 /* shared */ = {
+			isa = PBXGroup;
+			children = (
+				918F84571384974400B244C3 /* runarounds.cpp */,
+				918F84651384ABEF00B244C3 /* text_frame_options.h */,
+				918F84661384ABF900B244C3 /* text_frame_options.cpp */,
+				918F84371384962300B244C3 /* adobeutils */,
+				91EE6E91136F7E6800B724E4 /* xml */,
+				91EE6E87136F7E4400B724E4 /* preferences */,
+				9199115E136E1F260041ACD4 /* Basic_Display_Ad.h */,
+				9199115F136E1F340041ACD4 /* Basic_Display_Ad.cpp */,
+				91991161136E1F460041ACD4 /* Basic_Page.h */,
+				91991162136E1F460041ACD4 /* Basic_Page.cpp */,
+			);
+			name = shared;
+			sourceTree = "<group>";
+		};
+		91EE6E66136F7D9600B724E4 /* adobe */ = {
+			isa = PBXGroup;
+			children = (
+				91EE6E67136F7D9600B724E4 /* SnpGraphicHelper.h */,
+				91EE6E68136F7D9600B724E4 /* SnpGraphicHelper.cpp */,
+				91EE6E69136F7D9600B724E4 /* SDKLayoutHelper.h */,
+				91EE6E6A136F7D9600B724E4 /* SDKLayoutHelper.cpp */,
+				91EE6E6B136F7D9600B724E4 /* SnpTextModelHelper.h */,
+				91EE6E6C136F7D9600B724E4 /* SnpTextModelHelper.cpp */,
+				91EE6E6D136F7D9600B724E4 /* SnpTextAttrHelper.h */,
+				91EE6E6E136F7D9600B724E4 /* SDKFileHelper.cpp */,
+				91EE6E6F136F7D9600B724E4 /* SDKFileHelper.h */,
+			);
+			name = adobe;
+			sourceTree = "<group>";
+		};
+		91EE6E87136F7E4400B724E4 /* preferences */ = {
+			isa = PBXGroup;
+			children = (
+				91EE6E88136F7E4400B724E4 /* CL_Abstract_Prefs.h */,
+				91EE6E89136F7E4400B724E4 /* CL_NewsCAD_Prefs.cpp */,
+				91EE6E8A136F7E4400B724E4 /* CL_NewsCAD_Prefs.h */,
+			);
+			name = preferences;
+			path = ../shared/preferences;
+			sourceTree = SOURCE_ROOT;
+		};
+		91EE6E91136F7E6800B724E4 /* xml */ = {
+			isa = PBXGroup;
+			children = (
+				91EE6E92136F7E6800B724E4 /* buffer.cpp */,
+				91EE6E93136F7E6800B724E4 /* buffer.h */,
+				91EE6E94136F7E6800B724E4 /* misc.h */,
+				91EE6E95136F7E6800B724E4 /* parser.cpp */,
+				91EE6E96136F7E6800B724E4 /* parser.h */,
+				91EE6E97136F7E6800B724E4 /* scanner.cpp */,
+				91EE6E98136F7E6800B724E4 /* scanner.h */,
+				91EE6E99136F7E6800B724E4 /* token.cpp */,
+				91EE6E9A136F7E6800B724E4 /* token.h */,
+			);
+			name = xml;
+			path = ../shared/xml;
+			sourceTree = SOURCE_ROOT;
+		};
+		91EE6EA3136FA0FE00B724E4 /* basic_classes */ = {
+			isa = PBXGroup;
+			children = (
+				918F84321384957A00B244C3 /* CL_Display_Ad.h */,
+				918F84331384958400B244C3 /* CL_Display_Ad.cpp */,
+				91EE6EA7136FA15C00B724E4 /* CL_Document.h */,
+				91EE6EA8136FA15C00B724E4 /* CL_Document.cpp */,
+				918F846B1384AC5F00B244C3 /* CL_Geometry_Importer.h */,
+				918F846C1384AC6D00B244C3 /* CL_Geometry_Importer.cpp */,
+				91EE6EA4136FA12B00B724E4 /* CL_NewsCadRect_ID.h */,
+				91EE6EA5136FA12B00B724E4 /* CL_NewsCadRect_ID.cpp */,
+				91991150136E1EB60041ACD4 /* CL_Page.h */,
+				91991151136E1EC50041ACD4 /* CL_Page.cpp */,
+			);
+			name = basic_classes;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		4B05EEB908840E8D00D809E1 /* Debug */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4B05EEC308840E8D00D809E1 /* Build configuration list for PBXNativeTarget "Debug" */;
+			buildPhases = (
+				4B05EEB508840E8D00D809E1 /* Sources */,
+				4B05EEB708840E8D00D809E1 /* Frameworks */,
+				4B05EEB808840E8D00D809E1 /* Rez */,
+				4B05EEB608840E8D00D809E1 /* Resources */,
+			);
+			buildRules = (
+				4B44966A088C66F500230491 /* PBXBuildRule */,
+			);
+			dependencies = (
+			);
+			name = Debug;
+			productName = Debug;
+			productReference = 4B05EEBA08840E8D00D809E1 /* HMTypesetContinuedLines.InDesignPlugin */;
+			productType = "com.apple.product-type.framework";
+		};
+		4B05EEC108840E8D00D809E1 /* Release */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4B05EEC508840E8D00D809E1 /* Build configuration list for PBXNativeTarget "Release" */;
+			buildPhases = (
+				4B05EEBD08840E8D00D809E1 /* Sources */,
+				4B05EEBF08840E8D00D809E1 /* Frameworks */,
+				4B05EEC008840E8D00D809E1 /* Rez */,
+				4B05EEBE08840E8D00D809E1 /* Resources */,
+			);
+			buildRules = (
+				0B44966A088C66F500230491 /* PBXBuildRule */,
+			);
+			dependencies = (
+			);
+			name = Release;
+			productName = Release;
+			productReference = 4B05EEC208840E8D00D809E1 /* HMTypesetContinuedLines.InDesignPlugin */;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		4B05EEAF08840E8D00D809E1 /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = 4B05EEB008840E8D00D809E1 /* Build configuration list for PBXProject "HMTypesetContinuedLines" */;
+			compatibilityVersion = "Xcode 2.4";
+			hasScannedForEncodings = 0;
+			mainGroup = 4B05EEAD08840E8D00D809E1;
+			productRefGroup = 4B05EEBB08840E8D00D809E1 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				4B05EEB908840E8D00D809E1 /* Debug */,
+				4B05EEC108840E8D00D809E1 /* Release */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		4B05EEB608840E8D00D809E1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4B05EEBE08840E8D00D809E1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXRezBuildPhase section */
+		4B05EEB808840E8D00D809E1 /* Rez */ = {
+			isa = PBXRezBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				67A8CF500905BA12008F0AC5 /* TypesetContinuedLines.fr.rsrc in Rez */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4B05EEC008840E8D00D809E1 /* Rez */ = {
+			isa = PBXRezBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				678CE44709169D2700ED7B84 /* TypesetContinuedLines.fr.rsrc in Rez */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXRezBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		4B05EEB508840E8D00D809E1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4B05EEF308840EA800D809E1 /* TypesetContinuedLines.fr in Sources */,
+				4B05EEF008840EA800D809E1 /* TypesetContinuedLinesNoStrip.cpp in Sources */,
+				4B05EEF108840EA800D809E1 /* TypesetContinuedLinesID.cpp in Sources */,
+				4B05EEF908840EA800D809E1 /* SDKPlugInEntrypoint.cpp in Sources */,
+				91052DAE1368E89B00BC4264 /* TypesetContinuedLines.cpp in Sources */,
+				91991152136E1EC50041ACD4 /* CL_Page.cpp in Sources */,
+				91991160136E1F340041ACD4 /* Basic_Display_Ad.cpp in Sources */,
+				91991163136E1F460041ACD4 /* Basic_Page.cpp in Sources */,
+				91EE6E70136F7D9600B724E4 /* SnpGraphicHelper.cpp in Sources */,
+				91EE6E71136F7D9600B724E4 /* SDKLayoutHelper.cpp in Sources */,
+				91EE6E72136F7D9600B724E4 /* SnpTextModelHelper.cpp in Sources */,
+				91EE6E73136F7D9600B724E4 /* SDKFileHelper.cpp in Sources */,
+				91EE6E7A136F7DFB00B724E4 /* global_data.cpp in Sources */,
+				91EE6E80136F7E1500B724E4 /* CL_Log_File.cpp in Sources */,
+				91EE6E81136F7E1500B724E4 /* XT_Assert.cpp in Sources */,
+				91EE6E8B136F7E4400B724E4 /* CL_NewsCAD_Prefs.cpp in Sources */,
+				91EE6E9B136F7E6800B724E4 /* buffer.cpp in Sources */,
+				91EE6E9C136F7E6800B724E4 /* parser.cpp in Sources */,
+				91EE6E9D136F7E6800B724E4 /* scanner.cpp in Sources */,
+				91EE6E9E136F7E6800B724E4 /* token.cpp in Sources */,
+				91EE6EA6136FA12B00B724E4 /* CL_NewsCadRect_ID.cpp in Sources */,
+				91EE6EA9136FA15C00B724E4 /* CL_Document.cpp in Sources */,
+				91BB59721370E33D00F33ABB /* HM_ClassifiedHeading.CPP in Sources */,
+				91950858137A062000434A1D /* HM_Page.cpp in Sources */,
+				91AA958D137B5FAF00694E3A /* HM_ContinuedLine.cpp in Sources */,
+				91AA95A4137B615100694E3A /* CL_InDesignStyleSheetHelper.cpp in Sources */,
+				918F84341384958400B244C3 /* CL_Display_Ad.cpp in Sources */,
+				918F84581384974400B244C3 /* runarounds.cpp in Sources */,
+				918F84671384ABF900B244C3 /* text_frame_options.cpp in Sources */,
+				918F846D1384AC6D00B244C3 /* CL_Geometry_Importer.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4B05EEBD08840E8D00D809E1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4B05EEE608840EA800D809E1 /* TypesetContinuedLines.fr in Sources */,
+				4B05EEE308840EA800D809E1 /* TypesetContinuedLinesNoStrip.cpp in Sources */,
+				4B05EEE408840EA800D809E1 /* TypesetContinuedLinesID.cpp in Sources */,
+				4B05EEEC08840EA800D809E1 /* SDKPlugInEntrypoint.cpp in Sources */,
+				91991147136E11650041ACD4 /* TypesetContinuedLines.cpp in Sources */,
+				91EE6E58136F7C0500B724E4 /* Basic_Page.cpp in Sources */,
+				91EE6EA1136FA0CC00B724E4 /* Basic_Display_Ad.cpp in Sources */,
+				91EE6EAD136FA1B600B724E4 /* buffer.cpp in Sources */,
+				91EE6EB0136FA1C900B724E4 /* parser.cpp in Sources */,
+				91EE6EB2136FA1D700B724E4 /* scanner.cpp in Sources */,
+				91EE6EB4136FA1E300B724E4 /* token.cpp in Sources */,
+				91EE6EB6136FA21000B724E4 /* CL_NewsCAD_Prefs.cpp in Sources */,
+				91EE6EB8136FA22C00B724E4 /* SDKFileHelper.cpp in Sources */,
+				91EE6EB9136FA22E00B724E4 /* SDKLayoutHelper.cpp in Sources */,
+				91EE6EBA136FA22F00B724E4 /* SnpGraphicHelper.cpp in Sources */,
+				91EE6EBB136FA23000B724E4 /* SnpTextModelHelper.cpp in Sources */,
+				91EE6EC0136FA26D00B724E4 /* CL_Document.cpp in Sources */,
+				91EE6EC1136FA26E00B724E4 /* CL_NewsCadRect_ID.cpp in Sources */,
+				91EE6EC2136FA27000B724E4 /* CL_Page.cpp in Sources */,
+				91EE6EC6136FA29500B724E4 /* global_data.cpp in Sources */,
+				91EE6EC8136FA2A100B724E4 /* CL_Log_File.cpp in Sources */,
+				91EE6ECA136FA2AF00B724E4 /* XT_Assert.cpp in Sources */,
+				91BB59731370E34000F33ABB /* HM_ClassifiedHeading.CPP in Sources */,
+				9195087F137A0C1400434A1D /* HM_Page.cpp in Sources */,
+				91AA958E137B5FCD00694E3A /* HM_ContinuedLine.cpp in Sources */,
+				91936CFF1380797E00F7A418 /* CL_InDesignStyleSheetHelper.cpp in Sources */,
+				918F84591384975100B244C3 /* runarounds.cpp in Sources */,
+				918F845E1384979400B244C3 /* CL_Display_Ad.cpp in Sources */,
+				918F84681384AC0200B244C3 /* text_frame_options.cpp in Sources */,
+				918F846E1384AC6D00B244C3 /* CL_Geometry_Importer.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		4B05EEB108840E8D00D809E1 /* Default */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7FE5845A08AD6DB8007DB654 /* HMTypesetContinuedLinesPlugin.xcconfig */;
+			buildSettings = {
+				GCC_ENABLE_CPP_EXCEPTIONS = YES;
+				GCC_ENABLE_CPP_RTTI = YES;
+				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(HEADER_SEARCH_PATHS)",
+					../../../source/precomp/msvc,
+					../../../source/public/interfaces/xmedia,
+					../../../source/public/interfaces/preflight,
+					../../../source/public/interfaces/ui,
+					../../../source/public/interfaces/tables,
+					../../../source/public/interfaces/text,
+					../../../source/public/interfaces/graphics,
+					../../../source/public/libs/widgetbin/includes,
+					../../../source/public/interfaces/workgroup,
+					../../../source/public/interfaces/interactive,
+					../../../source/public/interfaces/interactive/ui,
+					../../../source/public/interfaces/colormgmt,
+					../../../source/public/interfaces/utils,
+					../../../source/public/interfaces/incopy,
+					../../../source/public/interfaces/layout,
+					../../../source/public/interfaces/architecture,
+					../../../source/public/interfaces/cjk,
+					../../../source/precomp/common,
+					../../../source/public/includes,
+					../../../source/public/libs/publiclib/plugins,
+					../../../source/public/libs/publiclib/files,
+					../../../source/public/libs/publiclib/objectmodel,
+					../../../external/asl/boost_libraries,
+					../../../source/sdksamples/common,
+					../../../external/afl/includes,
+					../typeset_continued_lines/headers,
+				);
+				INFOPLIST_FILE = ../../../source/sdksamples/common/Info.plist;
+				INFOPLIST_PREPROCESS = YES;
+				LD_GENERATE_MAP_FILE = YES;
+				PRODUCT_NAME = HMTypesetContinuedLines;
+				STRIP_INSTALLED_PRODUCT = NO;
+			};
+			name = Default;
+		};
+		4B05EEC408840E8D00D809E1 /* Default */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7FE5845908AD6DB8007DB654 /* HMTypesetContinuedLinesPlugin_debug.xcconfig */;
+			buildSettings = {
+				BUILT_PRODUCTS_DIR = "$(SRCROOT)/../debug";
+				INFOPLIST_PREPROCESS = YES;
+			};
+			name = Default;
+		};
+		4B05EEC608840E8D00D809E1 /* Default */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7FE5845808AD6DB8007DB654 /* HMTypesetContinuedLinesPlugin_release.xcconfig */;
+			buildSettings = {
+				BUILT_PRODUCTS_DIR = "$(SRCROOT)/../release";
+				DEAD_CODE_STRIPPING = NO;
+				INFOPLIST_PREPROCESS = YES;
+			};
+			name = Default;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		4B05EEB008840E8D00D809E1 /* Build configuration list for PBXProject "HMTypesetContinuedLines" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4B05EEB108840E8D00D809E1 /* Default */,
+			);
+			defaultConfigurationIsVisible = 1;
+			defaultConfigurationName = Default;
+		};
+		4B05EEC308840E8D00D809E1 /* Build configuration list for PBXNativeTarget "Debug" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4B05EEC408840E8D00D809E1 /* Default */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Default;
+		};
+		4B05EEC508840E8D00D809E1 /* Build configuration list for PBXNativeTarget "Release" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4B05EEC608840E8D00D809E1 /* Default */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Default;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 4B05EEAF08840E8D00D809E1 /* Project object */;
+}
