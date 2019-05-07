@@ -1,0 +1,641 @@
+//========================================================================================
+//  
+//  $File: $
+//  
+//  Owner: Ross Edgar
+//  
+//  $Author: $
+//  
+//  $DateTime: $
+//  
+//  $Revision: $
+//  
+//  $Change: $
+//  
+//  Copyright 1997-2008 Adobe Systems Incorporated. All rights reserved.
+//  
+//  NOTICE:  Adobe permits you to use, modify, and distribute this file in accordance 
+//  with the terms of the Adobe license agreement accompanying it.  If you have received
+//  this file from a source other than Adobe, then your use, modification, or 
+//  distribution of it requires the prior written permission of Adobe.
+//  
+//========================================================================================
+
+#include "VCPlugInHeaders.h"
+
+// General includes:
+#include "MenuDef.fh"
+#include "ActionDef.fh"
+#include "ActionDefs.h"
+#include "AdobeMenuPositions.h"
+#include "LocaleIndex.h"
+#include "PMLocaleIds.h"
+#include "StringTable.fh"
+#include "ObjectModelTypes.fh"
+#include "ShuksanID.h"
+#include "ActionID.h"
+#include "CommandID.h"
+#include "WorkspaceID.h"
+#include "WidgetID.h"
+#include "BuildNumber.h"
+
+#include "InterfaceColorDefines.h"
+#include "IControlViewDefs.h"
+#include "SysControlIDs.h"
+#include "Widgets.fh"	// for PalettePanelWidget or DialogBoss
+
+
+// Project includes:
+#include "NC_ID.h"
+#include "GenericID.h"
+#include "ShuksanID.h"
+#include "TextID.h"
+
+
+#ifdef __ODFRC__
+
+/*  Plugin version definition.
+*/
+resource PluginVersion (kSDKDefPluginVersionResourceID)
+{
+	kTargetVersion,
+	kNC_PluginID,
+	kSDKDefPlugInMajorVersionNumber, kSDKDefPlugInMinorVersionNumber,
+	kSDKDefHostMajorVersionNumber, kSDKDefHostMinorVersionNumber,
+	kNC_CurrentMajorFormatNumber, kNC_CurrentMinorFormatNumber,
+	{ kInDesignProduct, kInCopyProduct},
+	{ kWildFS },
+	kNC_Version
+};
+
+
+/* -------------------------- ExtraPluginInfo resource -----------------------------
+
+/*  The ExtraPluginInfo resource adds extra information to the Missing Plug-in dialog
+	that is popped when a document containing this plug-in's data is opened when
+	this plug-in is not present. These strings are not translatable strings
+	since they must be available when the plug-in isn't around. They get stored
+	in any document that this plug-in contributes data to.
+*/
+resource ExtraPluginInfo(1)
+{
+	kNC_CompanyValue,			// Company name
+	kNC_MissingPluginURLValue,	// URL 
+	kNC_MissingPluginAlertValue,	// Missing plug-in alert text
+};
+
+
+/* --------------------------- Boss class definition ---------------------------- */
+
+resource ClassDescriptionTable(kSDKDefClassDescriptionTableResourceID)
+{{{
+	
+	/**
+	 This boss class supports two interfaces:
+	 IActionComponent and IPMPersist.
+
+	 
+	 @ingroup newscad
+	*/
+	Class
+	{
+		kNC_ActionComponentBoss,
+		kInvalidClass,
+		{
+			/** Handle the actions from the menu. */
+			IID_IACTIONCOMPONENT, kNC_ActionComponentImpl,
+			/** Persist the state of the menu across application instantiation.
+			Implementation provided by the API.*/
+			IID_IPMPERSIST, kPMPersistImpl
+		}
+	},
+
+			
+	/**
+		 This boss class implements the dialog for this plug-in. All
+		 dialogs must implement IDialogController. Specialisation of
+		 IObserver is only necessary if you want to handle widget
+		 changes dynamically rather than just gathering their values
+		 and applying in the IDialogController implementation.
+		 In this implementation IObserver is specialised so that the
+		 plug-in's about box is popped when the info button widget
+		 is clicked.
+
+		 
+		 @ingroup newscad_create_ad
+	*/
+	Class
+	{
+		kCreateAdDialogBoss,
+			kDialogBoss,
+		{
+			/** Provides management and control over the dialog.
+			*/
+			IID_IDIALOGCONTROLLER, kCreateAdOnTheFly_DialogControllerImpl,
+				/** Allows dynamic processing of dialog changes.
+				*/
+				IID_IOBSERVER, kCreateAdOnTheFly_DialogObserverImpl,
+			}
+
+	},
+	
+	Class
+	{
+		kPreferencesDialogBoss,
+			kDialogBoss,
+		{
+			IID_IDIALOGCONTROLLER, kPreferences_DialogControllerImpl,
+			IID_IOBSERVER, kPreferences_DialogObserverImpl,
+		}
+	
+	},
+	
+}}};
+
+/*  Implementation definition.
+*/
+resource FactoryList (kSDKDefFactoryListResourceID)
+{
+	kImplementationIDSpace,
+	{
+		#include "NC_FactoryList.h"
+	}
+};
+
+
+/*  Menu definition.
+*/
+resource MenuDef (kSDKDefMenuResourceID)
+{
+	{
+		// The About Plug-ins sub-menu item for this plug-in.
+		kNC_AboutActionID,			// ActionID (kInvalidActionID for positional entries)
+		kNC_AboutMenuPath,			// Menu Path.
+		kSDKDefAlphabeticPosition,			// Menu Position.
+		kSDKDefIsNotDynamicMenuFlag,		// kSDKDefIsNotDynamicMenuFlag or kSDKDefIsDynamicMenuFlag
+										// kSDKDefIsDynamicMenuFlag
+		0,								// defines position of 'NewsCAD' 
+										// item in menubar
+		kNewsCADMenuPathKey,
+		kWindowMenuPosition+1,			// just to right of 'Window' menu
+		kFalse,
+
+		kNC_ImportAdGeometry_ActionID,			// Import Ad Geometry...
+		kNewsCADMenuPath,
+		4.0,
+		kSDKDefIsNotDynamicMenuFlag,
+		
+		kNC_ImportArtFiles_ActionID,			// Import Art Files...
+		kNewsCADMenuPath,
+		5.0,
+		kSDKDefIsNotDynamicMenuFlag,
+		
+		kNC_Separator1ActionID,					// Separator 1
+		kNewsCADMenuPath kSDKDefDelimiterAndSeparatorPath,
+		6.0,
+		kSDKDefIsNotDynamicMenuFlag,
+				
+		kNC_CreateAdReport_ActionID,			// Create Ad Report...
+		kNewsCADMenuPath,
+		7.0,
+		kSDKDefIsNotDynamicMenuFlag,
+
+		kNC_ContinuedLines_ActionID,			// Continued Lines
+		kNewsCADMenuPath,
+		9.0,
+		kSDKDefIsNotDynamicMenuFlag,
+
+		kNC_CreateAdOnTheFly_ActionID,			// Create Ad On The Fly...
+		kNewsCADMenuPath,
+		11.0,
+		kSDKDefIsNotDynamicMenuFlag,
+		
+		kNC_Separator4ActionID,					// Separator 4
+		kNewsCADMenuPath  kSDKDefDelimiterAndSeparatorPath,
+		12.0,
+		kSDKDefIsNotDynamicMenuFlag,
+
+		kNC_Preferences_ActionID,				// Preferences...			
+		kNewsCADMenuPath,
+		13.0,
+		kSDKDefIsNotDynamicMenuFlag,
+	}
+};
+
+/* Action definition.
+*/
+resource ActionDef (kSDKDefActionResourceID)
+{
+	{
+		kNC_ActionComponentBoss, 		// ClassID of boss class that implements the ActionID.
+		kNC_AboutActionID,	// ActionID.
+		kNC_AboutMenuKey,	// Sub-menu string.
+		kOtherActionArea,				// Area name (see ActionDefs.h).
+		kNormalAction,					// Type of action (see ActionDefs.h).
+		kDisableIfLowMem,				// Enabling type (see ActionDefs.h).
+		kInvalidInterfaceID,			// Selection InterfaceID this action cares about or kInvalidInterfaceID.
+		kSDKDefInvisibleInKBSCEditorFlag, // kSDKDefVisibleInKBSCEditorFlag or kSDKDefInvisibleInKBSCEditorFlag.
+
+		kNC_ActionComponentBoss, 		
+		kNC_ImportAdGeometry_ActionID,
+		kNC_ImportAdGeometryMenuKey,
+		kOtherActionArea,				
+		kNormalAction,					
+		kDisableIfLowMem,			
+		kInvalidInterfaceID,			
+		kSDKDefInvisibleInKBSCEditorFlag, 
+
+		kNC_ActionComponentBoss, 		
+		kNC_ImportArtFiles_ActionID,
+		kNC_ImportArtFilesMenuKey,
+		kOtherActionArea,				
+		kNormalAction,					
+		kDisableIfLowMem,			
+		kInvalidInterfaceID,			
+		kSDKDefInvisibleInKBSCEditorFlag, 
+
+		kNC_ActionComponentBoss, 		
+		kNC_CreateAdReport_ActionID,
+		kNC_CreateAdReportMenuKey,
+		kOtherActionArea,				
+		kNormalAction,					
+		kDisableIfLowMem,			
+		kInvalidInterfaceID,			
+		kSDKDefInvisibleInKBSCEditorFlag, 
+
+		kNC_ActionComponentBoss, 		
+		kNC_ContinuedLines_ActionID,
+		kNC_ContinuedLinesMenuKey,
+		kOtherActionArea,				
+		kNormalAction,					
+		kDisableIfLowMem,			
+		kInvalidInterfaceID,			
+		kSDKDefInvisibleInKBSCEditorFlag, 
+
+		kNC_ActionComponentBoss, 
+		kNC_CreateAdOnTheFly_ActionID,
+		kNC_CreateAdOnTheFlyMenuKey,
+		kOtherActionArea,				
+		kNormalAction,					
+//		kDisableIfNoFrontDocument,	
+		kDisableIfLowMem,			
+		kInvalidInterfaceID,			
+		kSDKDefInvisibleInKBSCEditorFlag, 
+
+		kNC_ActionComponentBoss,
+		kNC_Preferences_ActionID,
+		kNC_PreferencesMenuKey,
+		kOtherActionArea,				
+		kNormalAction,					
+		kDisableIfLowMem,			
+//		kAlwaysEnabled,								// Always available	
+		kInvalidInterfaceID,			
+		kSDKDefInvisibleInKBSCEditorFlag, 
+
+	}
+};
+
+
+/*  LocaleIndex
+	The LocaleIndex should have indicies that point at your
+	localizations for each language system that you are localized for.
+*/
+/*  String LocaleIndex.
+*/
+resource LocaleIndex ( kSDKDefStringsResourceID)
+{
+	kStringTableRsrcType,
+	{
+		kWildFS, k_enUS, kSDKDefStringsResourceID + index_enUS
+		kWildFS, k_enGB, kSDKDefStringsResourceID + index_enUS
+		kWildFS, k_deDE, kSDKDefStringsResourceID + index_enUS
+		kWildFS, k_frFR, kSDKDefStringsResourceID + index_enUS
+		kWildFS, k_esES, kSDKDefStringsResourceID + index_enUS
+		kWildFS, k_ptBR, kSDKDefStringsResourceID + index_enUS
+		kWildFS, k_svSE, kSDKDefStringsResourceID + index_enUS
+		kWildFS, k_daDK, kSDKDefStringsResourceID + index_enUS
+		kWildFS, k_nlNL, kSDKDefStringsResourceID + index_enUS
+		kWildFS, k_itIT, kSDKDefStringsResourceID + index_enUS
+		kWildFS, k_noNO, kSDKDefStringsResourceID + index_enUS
+		kWildFS, k_fiFI, kSDKDefStringsResourceID + index_enUS
+		kInDesignJapaneseFS, k_jaJP, kSDKDefStringsResourceID + index_jaJP
+	}
+};
+
+resource LocaleIndex (kSDKDefStringsNoTransResourceID)
+{
+	kStringTableRsrcType,
+	{
+		kWildFS, k_Wild, kSDKDefStringsNoTransResourceID + index_enUS
+	}
+};
+
+resource StringTable (kSDKDefStringsNoTransResourceID + index_enUS)
+{
+	k_enUS,									// Locale Id
+	kEuropeanMacToWinEncodingConverter,		// Character encoding converter
+	{
+		// No-Translate strings go here:
+
+	}
+};
+
+
+/*  Dialog LocaleIndex.
+*/
+resource LocaleIndex (kSDKDefDialogResourceID)
+{
+   kViewRsrcType,
+	{
+		kWildFS,	k_Wild, kSDKDefDialogResourceID + index_enUS
+	}
+};
+
+
+/* ------------------------------ Type definition ------------------------------- */
+type NCCrAdDialogWidget(kViewRsrcType) : DialogBoss(ClassID = kCreateAdDialogBoss)
+{
+};
+
+type NCPreferencesDialogWidget(kViewRsrcType) : DialogBoss(ClassID = kPreferencesDialogBoss)
+{
+};
+
+
+/* ----------------------------- Dialog definitions --------------------------------
+	This view is not localised: therefore, it can reside here.
+	However, if you wish to localise it, it is recommended to locate it in one of
+	the localised framework resource files (i.e. NCCrAd_enUS.fr etc.) and
+	update your Dialog LocaleIndex accordingly.
+--------------------------------------------------------------------------------- */
+// Create Ad On The Fly ...
+resource NCCrAdDialogWidget (kSDKDefDialogResourceID + index_enUS)
+{
+	__FILE__, __LINE__,
+	kCreateAdDialog_WidgetID,		// WidgetID
+	kPMRsrcID_None,					// RsrcID
+	kBindNone,						// Binding
+	0, 0, 328, 230,					// Frame (l,t,r,b)
+	kTrue, kTrue,					// Visible, Enabled
+	kNC_CreateAdDialogTitleKey,		// Dialog name
+	{
+	//<FREDDYWIDGETDEFLISTUS>
+		DefaultButtonWidget
+		(
+			kOKButtonWidgetID,		// WidgetID
+			kSysButtonPMRsrcId,		// RsrcID
+			kBindNone,				// Binding
+			104, 190, 184, 210,		// Frame (l,t,r,b)
+			kTrue, kTrue,			// Visible, Enabled
+			kSDKDefOKButtonApplicationKey,	// Button text
+		),
+		CancelButtonWidget
+		(
+			kCancelButton_WidgetID,	// WidgetID
+			kSysButtonPMRsrcId,		// RsrcID
+			kBindNone,				// Binding
+			204, 190, 284, 210,		// Frame (l,t,r,b)
+			kTrue, kTrue,			// Visible, Enabled
+			kSDKDefCancelButtonApplicationKey,	// Button name
+			kTrue,					// Change to Reset on option-click.
+		),
+	//</FREDDYWIDGETDEFLISTUS>
+/*
+		InfoStaticTextWidget 				// Label that will contain "Client"
+		(
+			kWidthLabel_WidgetID,			// WidgetId
+			kSysStaticTextPMRsrcId,			// RsrcId
+			kBindAll,						// Frame binding
+			Frame (53, 30, 96, 46),				// Frame (l,t,r,b)
+			kTrue, kTrue, kAlignLeft,		// Visible, Enabled, Alignment
+			kDontEllipsize,					// Ellipsize style -- Should be one of 
+											// kDontEllipsize, kEllipsizeEnd, 
+											// kEllipsizeBeginning, kEllipsizeMiddle
+			kWidthLabelKey,					// Initial text
+			0,								// No associated widget
+			kPaletteWindowHiliteFontId,		// FontID
+			kPaletteWindowHiliteFontId,		// HiliteFontID
+		),
+*/
+		StaticTextWidget							// "Width:" label
+		(
+			kWidthLabel_WidgetID,					// WidgetId
+			kSysStaticTextPMRsrcId,					// RsrcId
+			kBindNone,								// Frame binding
+			Frame (53, 30, 110, 46),				// Frame (l,t,r,b)
+			kTrue, kTrue, kAlignRight,				// Visible, Enabled, Alignment
+			kDontEllipsize, kTrue,							// don't add any ellipses
+			kWidthLabelKey,							// Text
+			0,										// No associated widget
+		),
+		TextEditBoxWidget							// Number of columns
+		(
+			// CControlView properties
+			kColumnCountEditText_WidgetID,			// widget ID
+			kSysEditBoxPMRsrcId,					// PMRsrc ID
+			kBindNone, 								// frame binding
+			Frame (112, 28, 148, 50),				// left, top, right, bottom
+			kTrue,									// visible
+			kTrue,									// enabled
+
+			// CEditBoxAttributes
+			0,										// nudgeWidgetId (0 or 
+													// kInvalidWidgetID if no 
+													// nudge required)
+			1.0,									// small nudge amount
+			5.0,									// large nudge amount
+			0,										// max num chars (0 == no limit)
+			kFalse,									// read only flag
+			kFalse,									// notify on each key stroke
+
+			// TextDataValidation properties
+			kTrue,									// range checking enabled
+			kFalse,									// blank entry allowed
+			10,										// upper limit
+			1,										// lower limit
+
+			// CTextControlData properties
+			"1",									// Initial value
+		),
+		StaticTextWidget							// "columns" label
+		(
+			kColumnsLabel_WidgetID,					// WidgetId
+			kSysStaticTextPMRsrcId,					// RsrcId
+			kBindNone,								// Frame binding
+			Frame (152, 30, 256, 46),				// Frame (l,t,r,b)
+			kTrue, kTrue, kAlignLeft,				// Visible, Enabled, Alignment
+			kDontEllipsize, kTrue,					// don't add any ellipses
+			kColumnsWideLabelKey,					// Text
+			0,										// No associated widget
+		),
+		StaticTextWidget							// "Depth:" label
+		(
+			kDepthLabel_WidgetID,					// WidgetId
+			kSysStaticTextPMRsrcId,					// RsrcId
+			kBindNone,								// Frame binding
+			Frame (52, 60, 110, 76),					// Frame (l,t,r,b)
+			kTrue, kTrue, kAlignRight,				// Visible, Enabled, Alignment
+			kDontEllipsize, kTrue,					// don't add any ellipses
+			kDepthLabelKey,							// Text
+			0,										// No associated widget
+		),
+//		TextEditBoxWidget							// Depth edit text
+		YMeasureEditBoxWidget						// Depth edit text
+		(
+			// CControlView properties
+			kDepthEditText_WidgetID,				// widget ID
+			kSysEditBoxPMRsrcId,					// PMRsrc ID
+			kBindNone, 								// frame binding
+			Frame (112, 60, 312, 82),				// left, top, right, bottom
+			kTrue,									// visible
+			kTrue,									// enabled
+
+			// CEditBoxAttributes
+			0,										// nudgeWidgetId (0 or 
+													// kInvalidWidgetID if no 
+													// nudge required)
+			1.0,									// small nudge amount
+			5.0,									// large nudge amount
+			0,										// max num chars (0 == no limit)
+			kFalse,									// read only flag
+			kFalse,									// notify on each key stroke
+
+			// TextDataValidation properties
+			kTrue,									// range checking enabled
+			kFalse,									// blank entry allowed
+			1440,									// upper limit (in points)
+			6,										// lower limit (in points)
+
+			// CTextControlData properties
+			"1\"",									// Initial value
+		),
+		StaticTextWidget							// "Client Name:" label
+		(
+			kClientNameLabel_WidgetID,				// WidgetId
+			kSysStaticTextPMRsrcId,					// RsrcId
+			kBindNone,								// Frame binding
+			Frame (15, 90, 110, 112),				// Frame (l,t,r,b)
+			kTrue, kTrue, kAlignRight,				// Visible, Enabled, Alignment
+			kDontEllipsize, kTrue,							// don't add any ellipses
+			kClientNameLabelKey,					// Text
+			0,										// No associated widget
+		),
+		TextEditBoxWidget							// Client Name edit text
+		(
+			// CControlView properties
+			kClientEditText_WidgetID,				// widget ID
+			kSysEditBoxPMRsrcId,					// PMRsrc ID
+			kBindNone, 								// frame binding
+			Frame (112, 90, 312, 112),				// left, top, right, bottom
+			kTrue,									// visible
+			kTrue,									// enabled
+
+			// CEditBoxAttributes
+			0,										// nudgeWidgetId (0 or 
+													// kInvalidWidgetID if no 
+													// nudge required)
+			1.0,									// small nudge amount
+			5.0,									// large nudge amount
+			0,										// max num chars (0 == no limit)
+			kFalse,									// read only flag
+			kFalse,									// notify on each key stroke
+
+			// TextDataValidation properties
+			kTrue,									// range checking enabled
+			kFalse,									// blank entry allowed
+			10,										// upper limit
+			1,										// lower limit
+
+			// CTextControlData properties
+			"",										// Initial value
+		),
+		StaticTextWidget							// "Art File Name:" label
+		(
+			kArtFileLabel_WidgetID,					// WidgetId
+			kSysStaticTextPMRsrcId,					// RsrcId
+			kBindNone,								// Frame binding
+			Frame (15, 120, 110, 142),				// Frame (l,t,r,b)
+			kTrue, kTrue, kAlignRight,				// Visible, Enabled, Alignment
+			kDontEllipsize, kTrue							// don't add any ellipses
+			kArtFileNameLabelKey,					// Text
+			0,										// No associated widget
+		),
+		TextEditBoxWidget							// Art File Name edit text
+		(
+			// CControlView properties
+			kArtFileNameEditText_WidgetID,			// widget ID
+			kSysEditBoxPMRsrcId,					// PMRsrc ID
+			kBindNone, 								// frame binding
+			Frame (112, 120, 312, 142),				// left, top, right, bottom
+			kTrue,									// visible
+			kTrue,									// enabled
+
+			// CEditBoxAttributes
+			0,										// nudgeWidgetId (0 or 
+													// kInvalidWidgetID if no 
+													// nudge required)
+			1.0,									// small nudge amount
+			5.0,									// large nudge amount
+			0,										// max num chars (0 == no limit)
+			kFalse,									// read only flag
+			kFalse,									// notify on each key stroke
+
+			// TextDataValidation properties
+			kTrue,									// range checking enabled
+			kFalse,									// blank entry allowed
+			10,										// upper limit
+			1,										// lower limit
+
+			// CTextControlData properties
+			"",										// Initial value
+		),
+		StaticTextWidget							// "Salesperson:" label
+		(
+			kSalespersonNameLabel_WidgetID,			// WidgetId
+			kSysStaticTextPMRsrcId,					// RsrcId
+			kBindNone,								// Frame binding
+			Frame (15, 150, 110, 172),				// Frame (l,t,r,b)
+			kTrue, kTrue, kAlignRight,				// Visible, Enabled, Alignment
+			kDontEllipsize, kTrue,							// don't add any ellipses
+			kSalespersonNameLabelKey,				// Text
+			0,										// No associated widget
+		),
+		TextEditBoxWidget							// Salesperson edit text
+		(
+			// CControlView properties
+			kSalespersonNameEditText_WidgetID,		// widget ID
+			kSysEditBoxPMRsrcId,					// PMRsrc ID
+			kBindNone, 								// frame binding
+			Frame (112, 150, 312, 172),				// left, top, right, bottom
+			kTrue,									// visible
+			kTrue,									// enabled
+
+			// CEditBoxAttributes
+			0,										// nudgeWidgetId (0 or 
+													// kInvalidWidgetID if no 
+													// nudge required)
+			1.0,									// small nudge amount
+			5.0,									// large nudge amount
+			0,										// max num chars (0 == no limit)
+			kFalse,									// read only flag
+			kFalse,									// notify on each key stroke
+
+			// TextDataValidation properties
+			kTrue,									// range checking enabled
+			kFalse,									// blank entry allowed
+			10,										// upper limit
+			1,										// lower limit
+
+			// CTextControlData properties
+			"",										// Initial value
+		),
+	},
+};
+
+
+#endif // __ODFRC__
+
+#include "NC__enUS.fr"
+#include "NC__jaJP.fr"
+
+//  Code generated by DollyXs code generator

@@ -1,0 +1,39 @@
+PlaceAdPanel.mcp
+Source
+	Adobe
+		/Users/Shared/Adobe InDesign CS2 Products SDK/source/sdksamples/
+			codesnippets/
+				SnpTextModelHelper.cpp
+				SnpTextAttrHelper.h
+				SnpGraphicHelper.h
+				SnpGraphicHelper.cpp
+		/Users/Shared/Adobe InDesign CS2 Products SDK/source/sdksamples/
+			common/
+				SDKLayoutHelper.h
+				SDKLayoutHelper.cpp
+				SDKPlugInEntrypoint.cpp
+				SDKInfoButton.r
+		/Users/Shared/Adobe InDesign CS2 Products SDK/external/boost/boost/
+			tokenizer.hpp
+~/Documents/adobe/
+	shared_source_code/basic_classes/
+		Basic_Display_Ad.h
+		Basic_Display_Ad.cpp
+		Basic_Page.h
+		Basic_Page.cpp
+	newscad_place_ad/source/
+		PlaceAdPanelDisplayAd.h
+		PlaceAdPanelDisplayAd.cpp
+		NCPaletteListBoxObserver.cpp
+		NCPalettePanelObserver.cpp
+		MyListBoxHelper.h
+		MyListBoxHelper.cpp
+
+		generated/
+			NCPaletteActionComponent.cpp
+			NCPaletteFactoryList.h
+			NCPaletteID.h
+			NCPaletteID.cpp
+			NCPaletteNoStrip.cpp
+			NCPalette.fr
+/Users/developer/Documents/shared/adobeutils/runarounds.cpp

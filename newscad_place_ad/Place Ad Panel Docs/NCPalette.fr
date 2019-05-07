@@ -1,0 +1,667 @@
+//========================================================================================
+//  
+//  $File: $
+//  
+//  Owner: Ross L. Edgar
+//  
+//  $Author: $
+//  
+//  $DateTime: $
+//  
+//  $Revision: $
+//  
+//  $Change: $
+//  
+//  Copyright 1997-2005 Adobe Systems Incorporated. All rights reserved.
+//  
+//  NOTICE:  Adobe permits you to use, modify, and distribute this file in accordance 
+//  with the terms of the Adobe license agreement accompanying it.  If you have received
+//  this file from a source other than Adobe, then your use, modification, or 
+//  distribution of it requires the prior written permission of Adobe.
+//  
+//========================================================================================
+
+#include "VCPlugInHeaders.h"
+
+// General includes:
+#include "MenuDef.fh"
+#include "ActionDef.fh"
+#include "ActionDefs.h"
+#include "AdobeMenuPositions.h"
+#include "LocaleIndex.h"
+#include "PMLocaleIds.h"
+#include "StringTable.fh"
+#include "ObjectModelTypes.fh"
+#include "ShuksanID.h"
+#include "ActionID.h"
+#include "CommandID.h"
+#include "WorkspaceID.h"
+#include "WidgetID.h"
+#include "BuildNumber.h"
+#include "PanelList.fh"
+
+#include "InterfaceColorDefines.h"
+#include "IControlViewDefs.h"
+#include "SysControlIDs.h"
+#include "Widgets.fh"	// for PalettePanelWidget or DialogBoss
+
+
+// Project includes:
+#include "NCPaletteID.h"
+
+#define kNCPaletteListElementRsrcID	1200
+
+#ifdef __ODFRC__
+
+/*  Plugin version definition.
+*/
+resource PluginVersion (kSDKDefPluginVersionResourceID)
+{
+	kTargetVersion,
+	kNCPalettePluginID,
+	kSDKDefPlugInMajorVersionNumber, kSDKDefPlugInMinorVersionNumber,
+	kSDKDefHostMajorVersionNumber, kSDKDefHostMinorVersionNumber,
+	kNCPaletteCurrentMajorFormatNumber, kNCPaletteCurrentMinorFormatNumber,
+	{ kInDesignProduct, kInCopyProduct },
+	{ kWildFS },
+	kNCPaletteVersion
+};
+
+/*  The ExtraPluginInfo resource adds extra information to the Missing Plug-in dialog
+	that is popped when a document containing this plug-in's data is opened when
+	this plug-in is not present. These strings are not translatable strings
+	since they must be available when the plug-in isn't around. They get stored
+	in any document that this plug-in contributes data to.
+*/
+resource ExtraPluginInfo(1)
+{
+	kNCPaletteCompanyValue,			// Company name
+	kNCPaletteMissingPluginURLValue,	// URL 
+	kNCPaletteMissingPluginAlertValue,	// Missing plug-in alert text
+};
+
+/* Boss class definition.
+*/
+resource ClassDescriptionTable(kSDKDefClassDescriptionTableResourceID)
+{{{
+	
+	/**
+	 This boss class supports two interfaces:
+	 IActionComponent and IPMPersist.
+
+	 
+	 @ingroup newscad_ui
+	*/
+	Class
+	{
+		kNCPaletteActionComponentBoss,
+		kInvalidClass,
+		{
+			/** Handle the actions from the menu. */
+			IID_IACTIONCOMPONENT, kNCPaletteActionComponentImpl,
+			/** Persist the state of the menu across application instantiation.
+			Implementation provided by the API.*/
+			IID_IPMPERSIST, kPMPersistImpl
+		}
+	},
+
+	/**
+		 This boss class inherits from an API panel boss class, and
+		 adds an interface to control a pop-up menu on the panel.
+		 The implementation for this interface is provided by the API.
+
+		 
+		 @ingroup newscad_ui
+	*/
+
+	Class
+	{
+		kNCPalettePanelWidgetBoss,
+		kPalettePanelWidgetBoss,
+		{
+			/** The plug-in's implementation of ITextControlData with an exotic IID of IID_IPANELMENUDATA.
+			Implementation provided by the API.
+			*/
+			IID_IPANELMENUDATA, kCPanelMenuDataImpl,
+				
+			/** IObserver to respond to button pressing */
+			IID_IOBSERVER,	kNCPalettePanelObserverImpl,
+		}
+	},
+
+	/**
+	Gives a list-box that has additional observer added... 
+	to get selection change notifications
+	@ingroup wlistboxcomposite
+	*/
+	Class
+	{
+		kNCPaletteListBoxWidgetBoss,
+		kWidgetListBoxWidgetNewBoss,
+		{
+			IID_IOBSERVER, kNCPaletteListBoxObserverImpl,
+		}
+	},
+
+	Class
+	{
+		kNCPaletteTextWidgetBoss,
+		kInfoStaticTextWidgetBoss,
+		{
+			// Add the following interfaces for a white background (they'd override the default.)
+			// IID_ICONTROLVIEW, kAboutBoxStaticTextViewImpl,
+			// IID_IBOOLDATA, kPersistBoolDataImpl,
+		}
+	}
+
+}}};
+
+/*  Implementation definition.
+*/
+resource FactoryList (kSDKDefFactoryListResourceID)
+{
+	kImplementationIDSpace,
+	{
+		#include "NCPaletteFactoryList.h"
+	}
+};
+
+
+/*  Menu definition.
+*/
+resource MenuDef (kSDKDefMenuResourceID)
+{
+	{
+		// The About Plug-ins sub-menu item for this plug-in.
+		kNCPaletteAboutActionID,			// ActionID (kInvalidActionID for positional entries)
+		kNCPaletteAboutMenuPath,			// Menu Path.
+		kSDKDefAlphabeticPosition,			// Menu Position.
+		kSDKDefIsNotDynamicMenuFlag,		// kSDKDefIsNotDynamicMenuFlag or kSDKDefIsDynamicMenuFlag
+
+		// Place Ad
+		kNCPalettePopupPlaceAdActionID,
+		kNCPaletteTargetMenuPath,
+		kNCPalettePlaceAdMenuItemPosition,
+		kSDKDefIsNotDynamicMenuFlag,
+
+		// Remove From List
+		kNCPalettePopupRemoveFromListActionID,
+		kNCPaletteTargetMenuPath,
+		kNCPaletteRemoveFromListMenuItemPosition,
+		kSDKDefIsNotDynamicMenuFlag,
+		
+		// Separator for the popup menu on the panel
+		kNCPaletteSeparator1ActionID,
+		kNCPaletteInternalPopupMenuNameKey kSDKDefDelimiterAndSeparatorPath,	// :- to mark an item as a separator.
+		kNCPaletteSeparator1MenuItemPosition,
+		kSDKDefIsNotDynamicMenuFlag,
+
+		// About this plugin submenu for the popup menu on the panel
+		kNCPalettePopupAboutThisActionID,
+		kNCPaletteTargetMenuPath,
+		kNCPaletteAboutThisMenuItemPosition,
+		kSDKDefIsNotDynamicMenuFlag,
+	}
+};
+
+/* Action definition.
+*/
+resource ActionDef (kSDKDefActionResourceID)
+{
+	{
+		kNCPaletteActionComponentBoss, 		// ClassID of boss class that implements the ActionID.
+		kNCPaletteAboutActionID,			// ActionID.
+		kNCPaletteAboutMenuKey,				// Sub-menu string.
+		kOtherActionArea,					// Area name (see ActionDefs.h).
+		kNormalAction,						// Type of action (see ActionDefs.h).
+		kDisableIfLowMem,					// Enabling type (see ActionDefs.h).
+		kInvalidInterfaceID,				// Selection InterfaceID this action cares about or kInvalidInterfaceID.
+		kSDKDefInvisibleInKBSCEditorFlag,	// kSDKDefVisibleInKBSCEditorFlag or kSDKDefInvisibleInKBSCEditorFlag.
+
+		kNCPaletteActionComponentBoss,
+		kNCPalettePopupPlaceAdActionID,
+		kPlaceAdButtonKey,
+		kOtherActionArea,
+		kNormalAction,				
+		kDisableIfLowMem,	
+		kInvalidInterfaceID,		
+		kSDKDefInvisibleInKBSCEditorFlag,
+
+		kNCPaletteActionComponentBoss,
+		kNCPalettePopupRemoveFromListActionID,
+		kRemoveFromListButtonKey,
+		kOtherActionArea,
+		kNormalAction,				
+		kDisableIfLowMem,	
+		kInvalidInterfaceID,		
+		kSDKDefInvisibleInKBSCEditorFlag,
+
+		kNCPaletteActionComponentBoss,
+		kNCPalettePopupAboutThisActionID,
+		kSDKDefAboutThisPlugInMenuKey,	// Key to the name of this action
+		kOtherActionArea,
+		kNormalAction,
+		kDisableIfLowMem,
+		kInvalidInterfaceID,
+		kSDKDefInvisibleInKBSCEditorFlag,
+	}
+};
+
+
+/*  LocaleIndex
+	The LocaleIndex should have indicies that point at your
+	localizations for each language system that you are localized for.
+*/
+/*  String LocaleIndex.
+*/
+resource LocaleIndex ( kSDKDefStringsResourceID)
+{
+	kStringTableRsrcType,
+	{
+		kWildFS, k_enUS, kSDKDefStringsResourceID + index_enUS
+		kWildFS, k_enGB, kSDKDefStringsResourceID + index_enUS
+		kWildFS, k_deDE, kSDKDefStringsResourceID + index_enUS
+		kWildFS, k_frFR, kSDKDefStringsResourceID + index_enUS
+		kWildFS, k_esES, kSDKDefStringsResourceID + index_enUS
+		kWildFS, k_ptBR, kSDKDefStringsResourceID + index_enUS
+		kWildFS, k_svSE, kSDKDefStringsResourceID + index_enUS
+		kWildFS, k_daDK, kSDKDefStringsResourceID + index_enUS
+		kWildFS, k_nlNL, kSDKDefStringsResourceID + index_enUS
+		kWildFS, k_itIT, kSDKDefStringsResourceID + index_enUS
+		kWildFS, k_noNO, kSDKDefStringsResourceID + index_enUS
+		kWildFS, k_fiFI, kSDKDefStringsResourceID + index_enUS
+		kInDesignJapaneseFS, k_jaJP, kSDKDefStringsResourceID + index_jaJP
+	}
+};
+
+resource LocaleIndex (kSDKDefStringsNoTransResourceID)
+{
+	kStringTableRsrcType,
+	{
+		kWildFS, k_Wild, kSDKDefStringsNoTransResourceID + index_enUS
+	}
+};
+
+// added to support the list elements in the list box
+resource LocaleIndex (kNCPaletteListElementRsrcID)
+{
+	kViewRsrcType,
+	{
+		kWildFS, k_Wild, kNCPaletteListElementRsrcID + index_enUS
+	}
+};
+
+resource StringTable (kSDKDefStringsNoTransResourceID + index_enUS)
+{
+	k_enUS,									// Locale Id
+	kEuropeanMacToWinEncodingConverter,		// Character encoding converter
+	{
+		// No-Translate strings go here:
+
+		kNCPaletteInternalPopupMenuNameKey,	kNCPaletteInternalPopupMenuNameKey,		// No need to translate, internal menu name.
+
+	}
+};
+
+
+
+/*  Panel LocaleIndex.
+*/
+resource LocaleIndex (kSDKDefPanelResourceID)
+{
+	kViewRsrcType,
+	{
+		kWildFS, k_Wild, 	kSDKDefPanelResourceID + index_enUS
+	}
+};
+
+
+/*  Type definition.
+*/
+type NCPalettePanelWidget(kViewRsrcType) : PalettePanelWidget(ClassID = kNCPalettePanelWidgetBoss)
+{
+	CPanelMenuData;
+};
+
+type NCCmpListBox(kViewRsrcType)	: WidgetListBoxWidgetN(ClassID = kNCPaletteListBoxWidgetBoss) { };
+type NCCmpTextWidget(kViewRsrcType)	: InfoStaticTextWidget(ClassID = kNCPaletteTextWidgetBoss) { };
+
+/*  PanelList definition.
+*/
+resource PanelList (kSDKDefPanelResourceID)
+{
+	kSDKDefDefaultPaletteID,		// Palette number for default placement
+	initiallyVisible,				// Initial visible flag (initiallyHidden/initiallyVisible)
+	{
+		// 1st panel in the list
+		kSDKDefPanelResourceID,		// Resource ID for this panel (use SDK default rsrc ID)
+		kNCPalettePluginID,			// ID of plug-in that owns this panel
+		kSDKDefDefaultPaletteZOrder,// Z-order in palette
+		kNCPalettePanelWidgetActionID,	// Action ID to show/hide the panel
+		kNCPalettePanelTitleKey,	// Shows up in the Window list.
+		"",							// Alternate menu path of the form "Main:Foo" if you want your palette menu item in a second place
+		0.0,						// Alternate Menu position for determining menu order
+	}
+};
+
+/*  PanelView definition.
+	The view is not currently localised: therefore, it can reside here.
+	However, if you wish to localise it, it is recommended to locate it in one of
+	the localised framework resource files (i.e. NCPalette_enUS.fr etc.).
+*/
+resource NCPalettePanelWidget(kSDKDefPanelResourceID + index_enUS)
+{
+	__FILE__, __LINE__,					// Localization macro
+	kNCPalettePanelWidgetID,			// WidgetID
+	kPMRsrcID_None,						// RsrcID
+	kBindNone,							// Binding (0=none)
+	0, 0, 640, 240,						// Frame: left, top, right, bottom.
+	kTrue, kTrue,						// Visible, Enabled
+	kFalse,								// Erase background
+	kInterfacePaletteFill,				// Erase to color
+	kFalse,								// Draw dropshadow
+	kNCPalettePanelTitleKey,			// Panel name
+	{
+		// Column heads
+	    InfoStaticTextWidget 				// Label that will contain "Client"
+        (
+            kColumn1StaticTextWidgetID,		// WidgetId
+            kSysStaticTextPMRsrcId,			// RsrcId
+            kBindAll,						// Frame binding
+            Frame(3,0,130,19),				// Frame
+            kTrue, kTrue, kAlignCenter,		// Visible, Enabled, Alignment
+            kDontEllipsize,					// Ellipsize style -- Should be one of 
+            								// kDontEllipsize, kEllipsizeEnd, 
+            								// kEllipsizeBeginning, kEllipsizeMiddle
+            kColumn1StringKey,				// Initial text
+            0,
+            kPaletteWindowHiliteFontId,		// FontID
+            kPaletteWindowHiliteFontId,		// HiliteFontID
+        ),
+        InfoStaticTextWidget				// Label that will contain "File Name"
+        (
+            kColumn2StaticTextWidgetID,
+            kSysStaticTextPMRsrcId,
+            kBindAll,
+            Frame(131, 0, 270, 19),
+            kTrue, kTrue, kAlignLeft,
+            kDontEllipsize,
+            kColumn2StringKey,
+            0,
+            kPaletteWindowHiliteFontId,
+            kPaletteWindowHiliteFontId,
+        ),  
+        InfoStaticTextWidget				// Label that will contain "Ad Size"
+        (
+            kColumn3StaticTextWidgetID,
+            kSysStaticTextPMRsrcId,
+            kBindAll,
+            Frame(271, 0, 370, 19),
+            kTrue, kTrue, kAlignLeft,
+            kDontEllipsize,
+            kColumn3StringKey,
+            0,
+            kPaletteWindowHiliteFontId,
+            kPaletteWindowHiliteFontId,
+        ),  
+        InfoStaticTextWidget				// Label that will contain "Clr"
+        (
+            kColumn4StaticTextWidgetID,
+            kSysStaticTextPMRsrcId,
+            kBindAll,
+            Frame(371, 0, 400, 19),
+            kTrue, kTrue, kAlignLeft,
+            kDontEllipsize,
+            kColumn4StringKey,
+            0,
+            kPaletteWindowHiliteFontId,
+            kPaletteWindowHiliteFontId,
+        ),  
+        InfoStaticTextWidget				// Label that will contain "Section"
+        (
+            kColumn5StaticTextWidgetID,
+            kSysStaticTextPMRsrcId,
+            kBindAll,
+            Frame(401, 0, 550, 19),
+            kTrue, kTrue, kAlignLeft,
+            kDontEllipsize,
+            kColumn5StringKey,
+            0,
+            kPaletteWindowHiliteFontId,
+            kPaletteWindowHiliteFontId,
+        ),  
+        InfoStaticTextWidget				// Label that will contain "Page Range"
+        (
+            kColumn6StaticTextWidgetID,
+            kSysStaticTextPMRsrcId,
+            kBindAll,
+            Frame(551, 0, 637, 19),
+            kTrue, kTrue, kAlignLeft,
+            kDontEllipsize,
+            kColumn6StringKey,
+            0,
+            kPaletteWindowHiliteFontId,
+            kPaletteWindowHiliteFontId,
+        ),  
+/*
+		DefaultButtonWidget					// "Place Ad"
+		(
+			kOKButtonWidgetID,				// WidgetID
+			kSysButtonPMRsrcId,				// RsrcID
+			kBindNone,						// Binding
+			200, 200, 300, 220,				// Frame (l,t,r,b)
+			kTrue, kTrue,					// Visible, Enabled
+			kPlaceAdButtonKey,				// Button text
+		),
+*/
+		ButtonWidget // "Make ad" button
+		(
+			// CControlView properties
+			kNCPalettePlaceAdButtonWidgetID, //widget ID
+			kSysButtonPMRsrcId, //PMRsrc ID
+			kBindNone,	// frame binding
+//			Frame(5,125,100,145),
+			Frame(200, 200, 300, 220),				// Frame (l,t,r,b)
+			kTrue,		// visible
+			kFalse,		// disabled
+			// ButtonAttributes
+			//kTrue,		// default look true
+			// CTextControlData properties
+			kPlaceAdButtonKey, // control label (string key) goes here
+		)
+/*
+		CancelButtonWidget					// "Remove From List"
+		(
+			kCancelButton_WidgetID,			// WidgetID
+			kSysButtonPMRsrcId,				// RsrcID
+			kBindNone,						// Binding
+			340, 200, 440, 220,				// Frame (l,t,r,b)
+			kTrue, kTrue,					// Visible, Enabled
+			kRemoveFromListButtonKey,		// Button name
+			kTrue,							// Change to Reset on option-click.
+		),
+*/
+		ButtonWidget // "Put back" button
+		(
+			// CControlView properties
+			kNCPaletteRemoveButtonWidgetID, //widget ID
+			kSysButtonPMRsrcId, //PMRsrc ID
+			kBindNone,	// frame binding
+			Frame (340, 200, 440, 220),
+			kTrue,		// visible
+			kFalse,		// disabled
+			// ButtonAttributes
+			//kTrue,		// default look true
+			// CTextControlData properties
+			kRemoveFromListButtonKey, // control label (string key) goes here
+		)
+/*
+		StaticTextWidget
+		(
+			0,								// WidgetId (default=0)
+			kSysStaticTextPMRsrcId,		// RsrcId
+			kBindNone,						// Frame binding
+			10, 10, 630, 20,				// Frame: left, top, right, bottom.
+			kTrue, kTrue,					// Visible, Enabled
+			kAlignLeft, kEllipsizeEnd		// Alignment, ellipsize style
+			kNCPaletteStaticTextKey,		// Initial text.
+			0								// No associated widget
+		),
+		// Unplaced ads dropdown list
+		DropDownListWidget
+		(
+			kUnplacedAdsListWidgetID, kSysDropDownPMRsrcId, kBindNone,
+			Frame (40, 40, 300, 400)
+			kTrue, kTrue,
+			{{
+			}}
+		),		
+*/
+		// Unplaced ad listbox:
+//		WidgetListBoxWidgetN
+		NCCmpListBox
+		(
+			// WidgetId, RsrcId
+			kUnplacedAdsListBoxWidgetID, kSysOwnerDrawListBoxPMRsrcId,
+			kBindAll,	
+// ORIGINAL			Frame (10, 22, 630, 190)		// Frame
+			Frame (-1, 20, 641, 180)		// Frame
+			kTrue, kTrue,					// Visible, Enabled
+			1,0,							// List dimensions
+			19,								// Cell height
+			1,								// Border width
+			kFalse, kTrue,					// Has scroll bar (h,v)
+			kFalse,							// Multiselection
+			kFalse,							// List items can be reordered
+			kFalse,							// Draggable to new/delete buttons
+			kFalse,							// Drag/Dropable to other windows
+			kFalse,							// An item always has to be selected
+			kFalse,							// Don't notify on reselect
+
+			// Fill list box with widgets with this ID (default is 0)
+			kNCPaletteListElementRsrcID
+			{
+				CellPanelWidget
+				(
+					kCellPanelWidgetID, kPMRsrcID_None,			// WidgetId, RsrcId
+					kBindAll,									// Frame binding
+					Frame(-1, 1, 626, 152)		// Frame
+					kTrue, kTrue								// Visible, Enabled
+					{
+						// ----- This is the CPanelControlData that holds the widgets
+						//		 that are items in the list box. They are not persistant
+						//		 and so are not specified as part of the resource. [amb]
+					}
+				)
+			},
+		),
+	}
+
+	kNCPaletteInternalPopupMenuNameKey		// Popup menu name (internal)
+};
+
+resource PrimaryResourcePanelWidget (kNCPaletteListElementRsrcID + index_enUS)
+{
+	__FILE__, __LINE__,
+	kNCPaletteListParentWidgetId, 0,	// WidgetId, RsrcId
+	kNCPalettePluginID,	
+	kBindLeft | kBindRight,			// Frame binding
+	Frame(0, 21, 627, 39),			// Frame
+	kTrue, kTrue,					// Visible, Enabled
+	"",								// Panel name
+	{
+		// Just a info-static text widget with about-box text view to get white bg.
+		NCCmpTextWidget
+		(
+			kNCPaletteText1WidgetID, kPMRsrcID_None,		// WidgetId, RsrcId
+			kBindLeft | kBindRight,								// Frame binding
+			Frame(3,0,194,19)									// Frame
+			kTrue, kTrue, kAlignLeft,kEllipsizeEnd				// Visible, Enabled, Ellipsize style
+			"",													// Initial text
+			0,													// Associated widget for focus
+			kPaletteWindowSystemScriptFontId,					// default font 
+			kPaletteWindowSystemScriptFontId,					// not using highlight state to make font similar
+			//kPaletteWindowSystemScriptHiliteFontId,			// for highlight state (if you are not afraid of 
+																// the bold font messing up the .
+		),
+		
+		NCCmpTextWidget
+		(
+			kNCPaletteText2WidgetID, kPMRsrcID_None,		// WidgetId, RsrcId
+			kBindLeft | kBindRight,								// Frame binding
+			Frame(131,0,270,19)									// Frame
+			kTrue, kTrue, kAlignLeft,kEllipsizeEnd				// Visible, Enabled, Ellipsize style
+			"",													// Initial text
+			0,													// Associated widget for focus
+			kPaletteWindowSystemScriptFontId,					// default font 
+			kPaletteWindowSystemScriptFontId,					// not using highlight state to make font similar
+			//kPaletteWindowSystemScriptHiliteFontId,			// for highlight state (if you are not afraid of 
+																// the bold font messing up the .
+		),
+		
+		NCCmpTextWidget
+		(
+			kNCPaletteText3WidgetID, kPMRsrcID_None,		// WidgetId, RsrcId
+			kBindLeft | kBindRight,								// Frame binding
+			Frame(271,0,370,19)									// Frame
+			kTrue, kTrue, kAlignLeft,kEllipsizeEnd				// Visible, Enabled, Ellipsize style
+			"",													// Initial text
+			0,													// Associated widget for focus
+			kPaletteWindowSystemScriptFontId,					// default font 
+			kPaletteWindowSystemScriptFontId,					// not using highlight state to make font similar
+			//kPaletteWindowSystemScriptHiliteFontId,			// for highlight state (if you are not afraid of 
+																// the bold font messing up the .
+		),
+		
+		NCCmpTextWidget
+		(
+			kNCPaletteText4WidgetID, kPMRsrcID_None,		// WidgetId, RsrcId
+			kBindLeft | kBindRight,								// Frame binding
+			Frame(371,0,400,19)									// Frame
+			kTrue, kTrue, kAlignLeft,kEllipsizeEnd				// Visible, Enabled, Ellipsize style
+			"",													// Initial text
+			0,													// Associated widget for focus
+			kPaletteWindowSystemScriptFontId,					// default font 
+			kPaletteWindowSystemScriptFontId,					// not using highlight state to make font similar
+			//kPaletteWindowSystemScriptHiliteFontId,			// for highlight state (if you are not afraid of 
+																// the bold font messing up the .
+		),
+		
+		NCCmpTextWidget
+		(
+			kNCPaletteText5WidgetID, kPMRsrcID_None,		// WidgetId, RsrcId
+			kBindLeft | kBindRight,								// Frame binding
+			Frame(401,0,550,19)									// Frame
+			kTrue, kTrue, kAlignLeft,kEllipsizeEnd				// Visible, Enabled, Ellipsize style
+			"",													// Initial text
+			0,													// Associated widget for focus
+			kPaletteWindowSystemScriptFontId,					// default font 
+			kPaletteWindowSystemScriptFontId,					// not using highlight state to make font similar
+			//kPaletteWindowSystemScriptHiliteFontId,			// for highlight state (if you are not afraid of 
+																// the bold font messing up the .
+		),
+		
+		NCCmpTextWidget
+		(
+			kNCPaletteText6WidgetID, kPMRsrcID_None,		// WidgetId, RsrcId
+			kBindLeft | kBindRight,								// Frame binding
+			Frame(551,0,637,19)									// Frame
+			kTrue, kTrue, kAlignLeft,kEllipsizeEnd				// Visible, Enabled, Ellipsize style
+			"",													// Initial text
+			0,													// Associated widget for focus
+			kPaletteWindowSystemScriptFontId,					// default font 
+			kPaletteWindowSystemScriptFontId,					// not using highlight state to make font similar
+			//kPaletteWindowSystemScriptHiliteFontId,			// for highlight state (if you are not afraid of 
+																// the bold font messing up the .
+		),
+		
+	}
+};
+
+
+#endif // __ODFRC__
+
+#include "NCPalette_enUS.fr"
+#include "NCPalette_jaJP.fr"
+
+//  Code generated by DollyXs code generator
