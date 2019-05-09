@@ -1,0 +1,1 @@
+#ifndef __IAbstractAd_h__#define __IAbstractAd_h__// Interface includes:#include "IPMUnknown.h"#include "PMString.h"#include "CrAdID.h"class IAbstractAd : public IPMUnknown{public:	enum { kDefaultIID = IID_ICREATEAD };		virtual void	Make_(PMString& inStr) = 0;};#endif
