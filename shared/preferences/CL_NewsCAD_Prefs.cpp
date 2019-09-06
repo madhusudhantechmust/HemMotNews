@@ -20,6 +20,7 @@
 #include "parser.h"
 #include "CL_Log_File.h"
 #include "global_data.h"
+#include "FileUtils.h"
 
 // This source was developed as a C++ tool so it could be debugged outside the 
 // InDesign plugin framework.  Set compiler options here for handling error and 
@@ -33,11 +34,11 @@
 #endif
 
 // Now set the product to one of INDESIGN_PLUGIN, UNIX_COMMAND_LINE_PROGRAM, or 0.
-#ifndef PRODUCT
-#define	PRODUCT			INDESIGN_PLUGIN
+#ifndef HNM_PRODUCT
+#define	HNM_PRODUCT			INDESIGN_PLUGIN
 #endif
 
-#if PRODUCT == INDESIGN_PLUGIN
+#if HNM_PRODUCT == INDESIGN_PLUGIN
 // For plugins, use the Adobe alert to display messages.
 #include "CAlert.h"
 #endif
@@ -110,16 +111,16 @@ void CL_NewsCAD_Prefs::LoadPreferences_() {
 	OSStatus osStatus = ComputeFullPathToPreferencesFile_();
 	if (osStatus == noErr)
 	{
-#if PRODUCT == UNIX_COMMAND_LINE_PROGRAM
+#if HNM_PRODUCT == UNIX_COMMAND_LINE_PROGRAM
 		cout << "Prefs file full path = " << prefsFileFullPath_ << endl;
 #endif
 		if (DoesPrefsFileExistOnDisk_())
 		{
-#if PRODUCT == UNIX_COMMAND_LINE_PROGRAM
+#if HNM_PRODUCT == UNIX_COMMAND_LINE_PROGRAM
 			cout << "Preferences file exists.  Read it in and store values " <<
 				"in our member variables." << endl;
 #endif
-			TSourceBuffer* srcbuf = new TSourceBuffer (prefsFileFullPath_);
+			TSourceBuffer* srcbuf = new TSourceBuffer (prefsFileFullPath_.c_str());
  			//TParser parser (srcbuf, this, &CL_NewsCAD_Prefs::SetPreference_);
  			TParser parser (srcbuf, XML_Service_Routine);
 			
@@ -171,13 +172,13 @@ void CL_NewsCAD_Prefs::LoadPreferences_() {
 		}
 		else
 		{
-#if PRODUCT == UNIX_COMMAND_LINE_PROGRAM
+#if HNM_PRODUCT == UNIX_COMMAND_LINE_PROGRAM
 			cout << "Preferences file does not exist.  Create one with defaults."
 				<< endl;
 #endif
 			// The CTOR initializes our members to default values.  All we need to 
 			// do at this point is to write them out to the preferences file.
-			StorePreferencesInFile_(prefsFileFullPath_);
+			StorePreferencesInFile_(prefsFileFullPath_.c_str());
 		}
 	}
 }
@@ -197,7 +198,7 @@ bool CL_NewsCAD_Prefs::DoesPrefsFileExistOnDisk_()
 		retval = true;
 	}
 	
-#if PRODUCT == UNIX_COMMAND_LINE_PROGRAM
+#if HNM_PRODUCT == UNIX_COMMAND_LINE_PROGRAM
 	cout << "End of DoesPrefsFileExistOnDisk_.  prefsFileFullPath_ = " 
 		<< prefsFileFullPath_ << endl;
 #endif
@@ -212,14 +213,24 @@ bool CL_NewsCAD_Prefs::DoesPrefsFileExistOnDisk_()
 OSStatus CL_NewsCAD_Prefs::ComputeFullPathToPreferencesFile_()
 {
 	FSRef		ref;
-	OSStatus	err;
+	OSStatus	err = kSuccess;
 	
 	// Get a MacOS X file system reference to the current user's Documents folder.
+
+    IDFile oPrefFile;
+    PMString strPrefFile;
+    FileUtils::GetAppDocumentFolder(&oPrefFile, "");
+    FileUtils::IDFileToPMString(oPrefFile, strPrefFile, kTrue);
+    strPrefFile.Append("/");
+    strPrefFile.Append(prefsFileName_);
+    prefsFileFullPath_ = strPrefFile.GetPlatformString();
+
+/*
 	err = FSFindFolder ( kUserDomain, kDocumentsFolderType, 
 							kDontCreateFolder, &ref );
 	if (!err)
 	{
-#if PRODUCT == UNIX_COMMAND_LINE_PROGRAM
+#if HNM_PRODUCT == UNIX_COMMAND_LINE_PROGRAM
 		cout << "FSFindFolder SUCCEEDED for ~/User/Documents" << endl;
 #endif
 		UInt8 path[256];
@@ -236,18 +247,18 @@ OSStatus CL_NewsCAD_Prefs::ComputeFullPathToPreferencesFile_()
 		}
 		else
 		{
-#if PRODUCT == UNIX_COMMAND_LINE_PROGRAM
+#if HNM_PRODUCT == UNIX_COMMAND_LINE_PROGRAM
 			cout << "FSRefMakePath FAILED err = " << err << endl;
 #endif
 		}
 	}
 	else
 	{
-#if PRODUCT == UNIX_COMMAND_LINE_PROGRAM
+#if HNM_PRODUCT == UNIX_COMMAND_LINE_PROGRAM
 		cout << "FSFindFolder FAILED err = " << err << endl;
 #endif
 	}
-
+*/
 	return err;
 }
 
@@ -277,7 +288,7 @@ void CL_NewsCAD_Prefs::StorePreferencesDialogInput_(char* inFileName) {
 	OSStatus osStatus = ComputeFullPathToPreferencesFile_();
 	if (osStatus == noErr)
 	{
-		StorePreferencesInFile_(prefsFileFullPath_);
+		StorePreferencesInFile_(prefsFileFullPath_.c_str());
 	}
 }
 
@@ -287,10 +298,10 @@ void CL_NewsCAD_Prefs::StorePreferencesDialogInput_(char* inFileName) {
 //
 //	Persist this object by writing its members out to the preferences file.
 //----------------------------------------------------------------------------------
-void CL_NewsCAD_Prefs::StorePreferencesInFile_(char* inPrefsPath)
+void CL_NewsCAD_Prefs::StorePreferencesInFile_(const char* inPrefsPath)
 {
 	LOG_BEGIN_FUNCTION;
-#if PRODUCT == UNIX_COMMAND_LINE_PROGRAM
+#if HNM_PRODUCT == UNIX_COMMAND_LINE_PROGRAM
 	cout << "CALLED:  StorePreferencesInFile_(" << inPrefsPath << ")" << endl;
 #endif
 	prefsFile_.open (prefsFileFullPath_, fstream::out);
@@ -353,7 +364,7 @@ void CL_NewsCAD_Prefs::SetPreference_(
 		30-Aug-05	Porting to InDesign.  Improved logging.
 		22-Jan-04	New.
 ----------------------------------------------------------------------------------*/
-#if PRODUCT == UNIX_COMMAND_LINE_PROGRAM
+#if HNM_PRODUCT == UNIX_COMMAND_LINE_PROGRAM
 	cout << "REACHED CL_NewsCAD_Prefs::SetPreference_() !!" << endl;
 #endif
 	char* pval = NULL;
@@ -361,19 +372,19 @@ void CL_NewsCAD_Prefs::SetPreference_(
 	
 	switch (inVal.dataType_) {
 		case tyString:
-#if PRODUCT == UNIX_COMMAND_LINE_PROGRAM
+#if HNM_PRODUCT == UNIX_COMMAND_LINE_PROGRAM
 			cout << "Data type = tyString" << endl;
 #endif
 			pval = inVal.value_.pString;
 			break;
 		case tyCharacter:
-#if PRODUCT == UNIX_COMMAND_LINE_PROGRAM
+#if HNM_PRODUCT == UNIX_COMMAND_LINE_PROGRAM
 			cout << "Data type = tyCharacter" << endl;
 #endif
 			ch = inVal.value_.character;
 			break;
 		default:
-#if PRODUCT == UNIX_COMMAND_LINE_PROGRAM
+#if HNM_PRODUCT == UNIX_COMMAND_LINE_PROGRAM
 			cout << "BAD NEWS:  UNKNOWN DATA TYPE." << endl;
 #endif
 			break;
@@ -414,7 +425,7 @@ void CL_NewsCAD_Prefs::SetPreference_(
 		}
 		else
 		{
-#if PRODUCT == UNIX_COMMAND_LINE_PROGRAM
+#if HNM_PRODUCT == UNIX_COMMAND_LINE_PROGRAM
 			cout << "THIS SHOULD NOT HAPPEN" << endl;			// Can't happen.
 #endif
 		}
@@ -433,7 +444,7 @@ void CL_NewsCAD_Prefs::SetPreference_(
 	}
 	else
 	{
-#if PRODUCT == UNIX_COMMAND_LINE_PROGRAM
+#if HNM_PRODUCT == UNIX_COMMAND_LINE_PROGRAM
 		cout << "UNRECOGNIZED ELEMENT NAME" << endl;	// Unrecognized element name -- 
 														// just ignore for now.
 #endif
@@ -454,7 +465,7 @@ void CL_NewsCAD_Prefs::SetGraphicsPath_(char* inCString)
 		delete [] pathToArtFiles_;
 		pathToArtFiles_ = NULL;
 /*		LOG ("<p>Suspicious:  NULL pointer for graphics path.</p>"); */
-#if PRODUCT == UNIX_COMMAND_LINE_PROGRAM
+#if HNM_PRODUCT == UNIX_COMMAND_LINE_PROGRAM
 		cout << "NULL pointer for graphics path." << endl;
 #endif
 		LOG_END_FUNCTION;
@@ -554,7 +565,7 @@ void CL_NewsCAD_Prefs::GetGraphicsPath_(char *str)
 #pragma mark -
 
 void CL_NewsCAD_Prefs::GiveAlert_(char* inMsg, bool inIsError /*= false*/) {
-#if PRODUCT == INDESIGN_PLUGIN
+#if HNM_PRODUCT == INDESIGN_PLUGIN
 	CAlert::ModalAlert
 	(
 		inMsg,
@@ -564,7 +575,7 @@ void CL_NewsCAD_Prefs::GiveAlert_(char* inMsg, bool inIsError /*= false*/) {
 		1,							// Set OK button to default
 		inIsError ? CAlert::eErrorIcon : CAlert::eInformationIcon
 	);
-#elif PRODUCT == UNIX_COMMAND_LINE_PROGRAM
+#elif HNM_PRODUCT == UNIX_COMMAND_LINE_PROGRAM
 	if (inIsError)
 		cout << "Error:  ";
 	else

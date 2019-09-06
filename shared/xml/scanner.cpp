@@ -199,7 +199,7 @@ TTextScanner::Get ()
 TToken*
 TTextScanner::Get (ParserState inParserState)
 {
-	TToken*	pToken;
+	TToken*	pToken = &eofToken;
 
 	if (charCodeMap[pTextInBuffer->Char ()] != ccEndOfFile)
 	{
