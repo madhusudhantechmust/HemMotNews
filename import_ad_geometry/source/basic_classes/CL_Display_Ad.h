@@ -43,7 +43,9 @@ public:
 	virtual	~CL_Display_Ad ();							// Currently, nothing
 
 	// Helper/bottleneck for copy/assign.
-	void			CopyAllMembers_(const CL_Display_Ad & inObj);
+    // Change by TechMust-MJ - 20190627
+    using Basic_Display_Ad::CopyAllMembers_;
+    void	CopyAllMembers_(const CL_Display_Ad & inObj);
 	
 	// Zero out/empty all instance variables.
 	virtual void	Clear_();
@@ -160,7 +162,10 @@ public:
 	// Put an ad on the page, at last!  This is an overloaded version of the 
 	// method in the Basic_Display_Ad class that simply plunks the ad down in 
 	// the middle of the page.
-	virtual void 	PasteUp_(CL_Page* p) throw (OSStatus);
+
+    // Change by TechMust-MJ - 20190627
+    using Basic_Display_Ad::PasteUp_;
+    void PasteUp_(CL_Page* p) throw (OSStatus);
 	
 	/* --------------------------- A D   R E P O R T ---------------------------- */
 

@@ -38,7 +38,7 @@ UID CL_InDesignStyleSheetHelper::FindByName_(PMString & inSSName) const
 	LOG_BEGIN_FUNCTION;
 	DECLARE_logstr;
 	::sprintf (logstr, "<!-- Trying to find para style sheet named %s -->", 
-		inSSName.GrabCString () );
+		inSSName.GetPlatformString().c_str());
 	LOG (logstr);
 	UID retval = kInvalidUID;
 
@@ -69,7 +69,7 @@ UID CL_InDesignStyleSheetHelper::DuplicateParagraphStyle_(
 	DECLARE_logstr;
 	::sprintf (logstr, 
 		"<!-- Duplicate style sheet named %s; name new style sheet %s. -->",
-		inSourceStyleName.GrabCString (), inNewStyleName.GrabCString () );
+		inSourceStyleName.GetPlatformString().c_str (), inNewStyleName.GetPlatformString ().c_str() );
 
 	UID retval = kInvalidUID;
 	UID sourceStyleSheetUid = kInvalidUID;

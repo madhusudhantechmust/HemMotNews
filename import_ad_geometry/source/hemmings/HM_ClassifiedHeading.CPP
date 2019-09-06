@@ -3,8 +3,7 @@ using namespace std;
 
 #include "ITextModel.h"
 #include "IAttributeStrand.h"
-#include "LayoutUIUtils.h"
-#include "LayoutUtils.h"
+#include "ILayoutUIUtils.h"
 #include "IDocument.h"
 #include "IStoryList.h"
 #include "IStyleInfo.h"
@@ -61,7 +60,7 @@ void HM_ClassifiedHeading::ComputeDataForContinuedLine_(
 		InterfacePtr<IMasterPage> masterPage (unknown2, IID_IMASTERPAGE);
 		if (masterPage)
 		{
-			IDocument* frontDoc = ::GetFrontDocument ();
+			IDocument* frontDoc = Utils<ILayoutUIUtils>()->GetFrontDocument ();
 			// 
 			if (frontDoc)
 			{

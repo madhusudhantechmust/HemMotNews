@@ -39,7 +39,7 @@ using namespace std;
 
 ///////////////////////////////////////////////////////////////////////////////
 #if 0
-#if PRODUCT == INDESIGN_PLUGIN
+#if HNM_PRODUCT == INDESIGN_PLUGIN
 	#include "LayoutUtils.h"
 	#include "IDocument.h"
 	#include "IFrameList.h"
@@ -179,7 +179,7 @@ void HM_Geometry_Importer::BuildInDesignDocument_() {
 #if VERSION == IN_HOUSE
 	#define	LOG_CLASSIFIED_HEADING_TEXT											\
 			::sprintf ( logstr, "<ClassifiedHeading>%s</ClassifiedHeading>",	\
-								pmsClassification.GrabCString () );				\
+								pmsClassification.GetPlatformString ().c_str () );				\
 			LOG (logstr)
 	#define	LOG_FRAME_INDICES													\
 			sprintf (logstr, "<FrameIndices first=\"%d\" last=\"%d\"/>", 		\
@@ -251,7 +251,7 @@ void HM_Geometry_Importer::ProcessStory_(UIDRef inStoryUIDRef)	throw (char*) {
 												styleUID, UseDefaultIID () );
 		if (styleInfo == nil) throw ("IStyleInfo");
 		const PMString& styleName = styleInfo->GetName ();
-		LogTextRunData_(position, length, styleName.GrabCString());
+		LogTextRunData_(position, length, styleName.GetPlatformString().c_str());
 
 		// Is that style the interesting style?
 		const PMString head1StyleName ("Head1");
@@ -372,7 +372,7 @@ bool HM_Geometry_Importer::PasteUpDisplayAdsForClassification_(
 
 #if VERSION == IN_HOUSE
 	::sprintf (logstr, "<Classification>%s</Classification>", 
-								inClassification.GrabCString () );
+								inClassification.GetPlatformString().c_str());
 	LOG (logstr);
 	::sprintf (logstr, "<PageUID>0x%x</PageUID>", inPageUID.Get());
 	LOG (logstr);
@@ -380,7 +380,7 @@ bool HM_Geometry_Importer::PasteUpDisplayAdsForClassification_(
 	
 	// Store ads with the same classification as inClassification in another vector.
 	// Exit immediately if no display ads for the passed-in classification.
- 	SelectAdsInCurrentClassification_( inClassification.GrabCString () );
+ 	SelectAdsInCurrentClassification_( inClassification.GetPlatformString().c_str() );
 	if (adsToPlaceVector_.size () <= 0)
 	{
 		LOG ("<AdCount>0</AdCount>");
@@ -613,7 +613,7 @@ void HM_Geometry_Importer::LogDocumentStories_()
 	PMString documentName;
 	frontDoc_->GetName(documentName);
 	sprintf (logstr, "<h3>Stories in document %s</h3>", 
-				documentName.GrabCString());
+				documentName.GetPlatformString().c_str());
 	LOG (logstr);
 #endif
 }
@@ -683,7 +683,7 @@ void HM_Geometry_Importer::LogClassStartPageData_(const UID pageUID)
 				PMString pageStr;
 				pageList->GetPageString (pageUID, &pageStr);
 				::strcat (logstr, "  num=\"");
-				::strcat (logstr, pageStr.GrabCString ());
+				::strcat (logstr, pageStr.GetPlatformString().c_str());
 				::strcat (logstr, "\"");
 			}
 		}
@@ -723,7 +723,7 @@ void HM_Geometry_Importer::HandleAdPastedUp_(int inIdx)
 		InterfacePtr<IFrameListComposer> frameListComposer (
 									currentStoryFrameList_, UseDefaultIID());
 		ASSERT (frameListComposer);
-		frameListComposer->RecomposeThruNthFrame (-1);
+		frameListComposer->RecomposeThruTextIndex(kInvalidTextIndex);
 
 		// If the story's overset, do something!
 		if (Utils<ITextUtils>()->IsOverset (currentStoryFrameList_))

@@ -79,8 +79,8 @@ class CL_WriteAdReportWorkhorse :
 		virtual void GetBlackBoxData_(IPMUnknown* inObj, char** ioBuffer);
 		virtual void ComputeAndStorePageNumber_(UID inUID, UIDRef inUIDRef, 
 									CL_Display_Ad* ioAd, UID & adPageUID) const;
-		virtual void ComputeAndStoreAdGeometry_(UIDRef inUIDRef, UID & inAdPageUID, 
-								IGeometry* pIGeometry, CL_Display_Ad* ioAd) const
+		virtual PMPoint ComputeAndStoreAdGeometry_(UIDRef inUIDRef, UID & inAdPageUID,
+                                    PBPMRect bBoxPasteboard) const
 								throw (char*);
 		virtual bool ChooseOutputFile_(std::string & ioFullPath);
 		virtual bool ChooseOutputFile_(bool & ioDoesFileExist);
@@ -348,9 +348,18 @@ void CL_WriteAdReportWorkhorse::ProcessPageItem_(UID inItemUID,
 				UID adPageUID = kInvalidUID;
 				ComputeAndStorePageNumber_(inItemUID, inPageItemUIDRef, 
 														ad.get(), adPageUID);
-				ComputeAndStoreAdGeometry_(inPageItemUIDRef, adPageUID, 
-													objectGeometry, ad.get());
-				
+
+                PBPMRect oItemBoundingBox = objectGeometry->GetStrokeBoundingBox(::InnerToPasteboardMatrix(objectGeometry));
+                try
+                {
+                    PMPoint oOrigin = ComputeAndStoreAdGeometry_(inPageItemUIDRef, adPageUID, oItemBoundingBox);
+                    ad->SetBoxX_(oOrigin.X());
+                    ad->SetBoxY_(oOrigin.Y());
+                }
+                catch (char *poError)
+                {
+                    LOG(poError);
+                }
 				placedAdsVector_.push_back (*ad);		// Copy ad into vector
 			}
 			else
@@ -473,15 +482,10 @@ void CL_WriteAdReportWorkhorse::ComputeAndStorePageNumber_(
 //----------------------------------------------------------------------------------
 //	ComputeAndStoreAdGeometry_
 //----------------------------------------------------------------------------------
-void CL_WriteAdReportWorkhorse::ComputeAndStoreAdGeometry_(UIDRef inUIDRef, 
-									UID & inAdPageUID, IGeometry* pIGeometry, 
-									CL_Display_Ad* ioAd) const throw (char*)
+PMPoint CL_WriteAdReportWorkhorse::ComputeAndStoreAdGeometry_(UIDRef inUIDRef,
+									UID & inAdPageUID, PBPMRect bBoxPasteboard) const throw (char*)
 {
 	LOG_BEGIN_FUNCTION;
-	
-	// Ad geometry:
-	PBPMRect bBoxPasteboard = pIGeometry->GetStrokeBoundingBox (
-							::InnerToPasteboardMatrix (pIGeometry));
 	
 // 	// Page geometry:
 	IDocument* iDocument = Utils<ILayoutUIUtils>()->GetFrontDocument();
@@ -512,22 +516,22 @@ void CL_WriteAdReportWorkhorse::ComputeAndStoreAdGeometry_(UIDRef inUIDRef,
 		throw errorStr;
 	}
 
-	PBPMRect bBoxPagePasteboard = pageGeometry->GetStrokeBoundingBox (
-										::InnerToPasteboardMatrix (pageGeometry));
+    PBPMRect bBoxPagePasteboard = pageGeometry->GetStrokeBoundingBox (::InnerToPasteboardMatrix(pageGeometry));
 
 	// Translate object's x1,y1
 	PMReal left = bBoxPasteboard.Left () - bBoxPagePasteboard.Left ();
 	PMReal top  = bBoxPasteboard.Top () - bBoxPagePasteboard.Top ();
 	
 	// Compute width and height of object even though we don't need them
-	PMReal width = bBoxPasteboard.Right () - bBoxPasteboard.Left ();
-	PMReal height = bBoxPasteboard.Bottom () - bBoxPasteboard.Top ();
+//	PMReal width = bBoxPasteboard.Right () - bBoxPasteboard.Left ();
+//	PMReal height = bBoxPasteboard.Bottom () - bBoxPasteboard.Top ();
 	
 	// Set x1,y1
-	ioAd->SetBoxX_( left );
-	ioAd->SetBoxY_( top );
-	
+//	ioAd->SetBoxX_( left );
+//	ioAd->SetBoxY_( top );
+
 	LOG_END_FUNCTION;
+    return PMPoint (left, top);
 }
 
 

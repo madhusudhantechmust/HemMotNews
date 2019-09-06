@@ -23,7 +23,7 @@
 #include "newscad.h"
 //#include "HM_Display_Ad.h"
 
-#if PRODUCT == INDESIGN_PLUGIN
+#if HNM_PRODUCT == INDESIGN_PLUGIN
 	class IDataBase;
 	class ITextModel;
 	class IDocument;

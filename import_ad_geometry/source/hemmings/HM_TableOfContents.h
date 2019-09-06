@@ -92,8 +92,10 @@ protected:
 							HM_ClassifiedHeading& inClassHeading, 
 							UIDRef inStoryUIDRef);
 	IDFile	tocFile_;
-	FSSpec	outputFileMacFSSpec_;
-	short	tocFileRefNum_;
+//  FSSpec Deprecated by Apple - changed by TechMust - MJ - 20190627
+//  FSSpec	outputFileMacFSSpec_; // deprecated
+//	short	tocFileRefNum_; // deprecated
+    FILE    *m_poFile;
 	bool	okToProcess_;
 	vector<HM_ClassifiedHeading>	classifiedHeadingsVector_;
 	int32 docPageCount_;

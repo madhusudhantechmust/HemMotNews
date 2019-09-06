@@ -26,8 +26,8 @@
 #define	HEMMINGS		1
 #define	CLIENT			HEMMINGS
 
-#ifndef PRODUCT
-#define	PRODUCT			INDESIGN_PLUGIN
+#ifndef HNM_PRODUCT
+#define	HNM_PRODUCT			INDESIGN_PLUGIN
 #endif
 
 // Plugin IDs

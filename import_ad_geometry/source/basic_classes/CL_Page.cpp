@@ -48,7 +48,7 @@ using namespace std;
 
 void dump_newsCAD_rect (CL_NewsCadRect & ncr);
 
-#if PRODUCT == QUARKXTENSION					// QuarkXPress only
+#if HNM_PRODUCT == QUARKXTENSION					// QuarkXPress only
 	void dump_mac_rect (Rect r);
 	void dump_fixed_rect (fixedrect r);
 #endif

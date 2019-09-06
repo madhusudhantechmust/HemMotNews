@@ -23,6 +23,7 @@
 #include "IApplication.h"
 #include "IDialogMgr.h"
 #include "IDialog.h"
+#include "CAlert.h"
 
 // Dialog-specific resource includes:
 #include "CoreResTypes.h"

@@ -56,7 +56,7 @@ using namespace std;
 #include "CAlert.h"
 #include "newscad.h"
 #include "global_data.h"
-#include "tokenizer.hpp"
+#include "boost/tokenizer.hpp"
 #include "CL_Log_File.h"
 typedef boost::tokenizer<boost::char_separator<char> > tokenizer;
 
@@ -632,7 +632,7 @@ void Basic_Display_Ad::InsertAdDescriptiveText_(UIDRef inStoryUidRef)
 		{
 			string str;
 			ComputeAdDescriptionText_(str);
-			K2::shared_ptr<WideString> wideString (new WideString (str.c_str()));
+            boost::shared_ptr<WideString> wideString (new WideString (str.c_str()));
             InterfacePtr<ICommand> insertTextCmd (
            								textModelCmds->InsertCmd (0, wideString));
 			if (insertTextCmd)
@@ -708,7 +708,7 @@ ErrorCode Basic_Display_Ad::ApplyTextAttributeOverrides_(ITextModel* textModel,
 				
 		// Then add that to a list of paragraph attributes -- probably dumb, but 
 		// that's the only way I've gotten it to work.
-		K2::shared_ptr<AttributeBossList> paraAttributeBossList (
+		boost::shared_ptr<AttributeBossList> paraAttributeBossList (
 														new AttributeBossList ());
 		paraAttributeBossList->ApplyAttribute (textAttrAlign);
 
@@ -736,7 +736,7 @@ ErrorCode Basic_Display_Ad::ApplyTextAttributeOverrides_(ITextModel* textModel,
 
 		// Then add that to a list of text attributes -- probably dumb, but 
 		// that's the only way I've gotten it to work.
-		K2::shared_ptr<AttributeBossList> charAttributeBossList (
+		boost::shared_ptr<AttributeBossList> charAttributeBossList (
 															new AttributeBossList ());
 		if (!charAttributeBossList) throw "No charAttributeBossList";
 		charAttributeBossList->ApplyAttribute (textAttrPointSize);

@@ -271,7 +271,7 @@ void HM_Page::ComputePageGeometry_() {
 	}
 	catch (PMString exceptionString) {
 		CAlert::ErrorAlert (exceptionString);
-		const char* pCstr = exceptionString.GrabCString ();
+		const char* pCstr = exceptionString.GetPlatformString().c_str();
 		LOG (pCstr);
 	}	
 	LOG_END_FUNCTION;
@@ -400,7 +400,7 @@ void HM_Page::PasteUp_(std::vector<CL_Display_Ad> & adsToPlaceVector) {
 		// Second, sort candidate rectangles by x-position.  Sort order depends 
 		// on which side of the spread we're on.  On a left-hand page, sort 
 		// rects from left to right; on an odd page, sort them from right to left.
-		ASSERT (pageType_ != -1);	// ENSURE HM_Page::SetupForAdPlacement_() CALLED
+		// ASSERT (pageType_ != -1);	// ENSURE HM_Page::SetupForAdPlacement_() CALLED
 		sort ( newsCadRects.begin (), newsCadRects.end (), 
 				pageType_ == kRightPage ? Compare_NewsCadRects_X : 
 				Compare_NewsCadRects_X_LeftPage);
@@ -693,7 +693,7 @@ void HM_Page::TypesetAndPasteupContinuedLine_(PMString & inHeadingText) {
 ----------------------------------------------------------------------------------*/
 	LOG_BEGIN_FUNCTION;
 	DECLARE_logstr;
-	LOG_TAG_AND_VALUE ("ClassifiedHeading", inHeadingText.GrabCString ());
+	LOG_TAG_AND_VALUE ("ClassifiedHeading", inHeadingText.GetPlatformString().c_str());
 
 	// Be sure there are some rectangles open on the page
 	if (rectanglesVector_.size () == 0)

@@ -28,6 +28,7 @@
 #include "IBlackBoxCommands.h"
 #include "IBlackBoxCmdData.h"
 #include "ILayoutUIUtils.h"
+#include "FileUtils.h"
 //#include "ImportGeomID.h"
 
 void dump_ad (CL_Display_Ad ad);
@@ -44,7 +45,7 @@ using namespace std;
 
 ///////////////////////////////////////////////////////////////////////////////
 #if 0
-#if PRODUCT == PLUGIN
+#if HNM_PRODUCT == PLUGIN
 	#include "WFPID.h"
 // 	#include "ITextModel.h"
 // 	#include "IAttributeStrand.h"
@@ -123,7 +124,7 @@ LOG (s);
 	inputFileSpec_.name[0] = 0;						// a Str63 on MacOS
 	inputFileRefNum_ = 0;
 	
-#if PRODUCT == QUARKXTENSION
+#if HNM_PRODUCT == QUARKXTENSION
 	CL_Document* pCurDoc = gpNewsCAD_XT->GetCurrentDocumentObject_();
 	ASSERT (pCurDoc);
 	pCurDoc->GetPageCount_(&pageCount);
@@ -231,7 +232,9 @@ void CL_Geometry_Importer::ChooseFile_()
 	{
 		// Set our members to specify the file.
 		IDFile chosenFile = fileChooser.GetIDFile ();
-		PMString filePath = fileChooser.GetPath ();
+/*
+        // Deprecated use of methodology to convert HFS to POSIX
+        PMString filePath = fileChooser.GetPath ();
 		int i = 0;
 		CharCounter k = filePath.IndexOfCharacter (':');
 		while (k > 0)
@@ -243,10 +246,13 @@ void CL_Geometry_Importer::ChooseFile_()
 			if (i > 512) break;
 		}
 		filePath.Insert ("/Volumes/");
-		int32 pathlen = filePath.ByteLength ();
-		ConstCString path = filePath.GrabCString ();
-		inputFilePath_ = new char [pathlen + 1];
-		::strcpy (inputFilePath_, path);
+		int32 pathlen = filePath.GetPlatformString().length();
+		ConstCString path = filePath.GetPlatformString().c_str ();
+ */
+        PMString filePath;
+        FileUtils::IDFileToPMString (chosenFile, filePath, kTrue);
+		inputFilePath_ = new char [filePath.GetPlatformString().length() + 1];
+		::strcpy (inputFilePath_, filePath.GetPlatformString().c_str ());
 #if VERSION == IN_HOUSE
 		string s;
 		s = "<ExportsFile path=\"";

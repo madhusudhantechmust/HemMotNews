@@ -38,6 +38,7 @@ public:
 		value.integer	= 0;
 		string[0]		= 0;
 	}
+    virtual ~TToken () {};
 	
 	TTokenCode	Code () const		{ return code; }
 	TDataType	Type () const		{ return type; }

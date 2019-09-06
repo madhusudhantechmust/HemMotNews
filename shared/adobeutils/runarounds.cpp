@@ -90,7 +90,7 @@ ErrorCode SetRunaround_(const UIDRef& graphicFrameUIDRef,
 	Change Log:
 ----------------------------------------------------------------------------------*/
 	ErrorCode result = kFailure;
-	Utils<HighLevelAPI::ITextWrapFacade> textWrapFacade;
+    Utils<Facade::ITextWrapFacade> textWrapFacade;
 	if (textWrapFacade)
 	{
 		result = textWrapFacade->SetMargins ( UIDList (graphicFrameUIDRef), 
@@ -121,7 +121,7 @@ ErrorCode SetRunaround_(const UIDRef& graphicFrameUIDRef,
 		19-SEP-07	New.
 ----------------------------------------------------------------------------------*/
 	ErrorCode result = kFailure;
-	Utils<HighLevelAPI::ITextWrapFacade> textWrapFacade;
+    Utils<Facade::ITextWrapFacade> textWrapFacade;
 	if (textWrapFacade)
 	{
 		result = textWrapFacade->SetMargins ( UIDList (graphicFrameUIDRef), 
@@ -158,7 +158,7 @@ ErrorCode ChangeTextWrapMode_(
 ----------------------------------------------------------------------------------*/
 	ErrorCode result = kFailure;
 	do {
-		Utils<HighLevelAPI::ITextWrapFacade> textWrapFacade;
+        Utils<Facade::ITextWrapFacade> textWrapFacade;
 		if (!textWrapFacade) {
 			break;
 		}
@@ -191,7 +191,7 @@ ErrorCode SetIgnoreRunarounds_(const UIDRef& inTextFrameUIDRef, bool inIgnore) {
 		12-Dec-05	New.
 ----------------------------------------------------------------------------------*/
 	ErrorCode retval = kFailure;
-	Utils<HighLevelAPI::ITextWrapFacade> textWrapFacade;
+    Utils<Facade::ITextWrapFacade> textWrapFacade;
 	if (textWrapFacade)
 	{
 		retval = textWrapFacade->SetIgnoreWrap ( UIDList (inTextFrameUIDRef), 

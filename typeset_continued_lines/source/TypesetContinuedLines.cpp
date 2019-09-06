@@ -77,7 +77,8 @@ class CL_TypesetContinuedLinesWorkhorse :
 							vector<HM_ClassifiedHeading>::iterator iterHeading );
 		virtual void	TypesetAndPasteUpContinuedLine_(int32 inPageNum, 
 							int32 inNextClassFirstPageNum, 
-							HM_ClassifiedHeading& inClassHeading, 
+							TextIndex nStart,
+                            TextIndex nEnd,
 							UIDRef inStoryUIDRef);
 
 	private:
@@ -250,7 +251,7 @@ void CL_TypesetContinuedLinesWorkhorse::FindAllClassifiedHeadings_(
 		}
 		
 		const PMString& styleName = styleInfo->GetName ();
-		LOG_TEXT_RUN_DATA (position, length, styleName.GrabCString());
+		LOG_TEXT_RUN_DATA (position, length, styleName.GetPlatformString().c_str());
 
 		// Is that style the interesting style?
 		const PMString head1StyleName ("Head1");
@@ -336,8 +337,10 @@ LOG_TAG_AND_VALUE ("EndPageNum", endPageNum);
 		{
 			while (nextLeftPageNum <= endPageNum)
 			{
-				TypesetAndPasteUpContinuedLine_(nextLeftPageNum, endPageNum, *p,
-								inStoryUIDRef
+                HM_ClassifiedHeading oClassifiedHeading = *p;
+                TextIndex nStartOffset = oClassifiedHeading.StartingOffset_();
+                TextIndex nEndOffset = oClassifiedHeading.EndingOffset_();
+				TypesetAndPasteUpContinuedLine_(nextLeftPageNum, endPageNum, nStartOffset, nEndOffset, inStoryUIDRef
 								/*, &macRect, inBoxID, 
 								p->GetStartingOffset_(), p->GetEndingOffset_()*/);
 
@@ -459,10 +462,14 @@ int CL_TypesetContinuedLinesWorkhorse::GetClassificationStartPageNum_(
 
 
 /*================================================================================*/
-void CL_TypesetContinuedLinesWorkhorse::TypesetAndPasteUpContinuedLine_(int32 inPageNum, 
-			int32 inNextClassFirstPageNum, HM_ClassifiedHeading & inClassHeading, 
-			UIDRef inStoryUIDRef/*, Rect *inNextHeadRect, 
-			boxid inBoxID, long inTextStart, long inTextEnd*/) {
+void CL_TypesetContinuedLinesWorkhorse::TypesetAndPasteUpContinuedLine_(
+                   int32 inPageNum,
+                   int32 inNextClassFirstPageNum,
+                   TextIndex nStart,
+                   TextIndex nEnd,
+                   UIDRef inStoryUIDRef/*, Rect *inNextHeadRect,
+			boxid inBoxID, long inTextStart, long inTextEnd*/)
+{
 /*----------------------------------------------------------------------------------
 	Abstract:
 		Called by CreateContinuedLinesForStory_(), this method sets up everything 
@@ -491,7 +498,7 @@ void CL_TypesetContinuedLinesWorkhorse::TypesetAndPasteUpContinuedLine_(int32 in
 	
 	LOG_TAG_AND_VALUE ("PageForContinuedLine", inPageNum);
 	LOG_TAG_AND_VALUE ("LastPageOfCurrentClassification", inNextClassFirstPageNum);
-	
+
 	// Setup a page object for the page where the continued line will go.
 	auto_ptr<CL_Document> apCurrentDocument (new CL_Document);
 	CL_Document* curDoc = apCurrentDocument.get ();
@@ -511,14 +518,15 @@ void CL_TypesetContinuedLinesWorkhorse::TypesetAndPasteUpContinuedLine_(int32 in
 	pageObj->GoTo_();
 	pageObj->SetupForClassifiedContinuedLinePlacement_();
 	
+
 	if (pageObj->FindOpenRects_())			// Ensure there's a place for it
 	{
 		// Fetch text of head
 		InterfacePtr<ITextModel> textModel (inStoryUIDRef, UseDefaultIID());
 		if (!textModel) throw ("ITextModel");
 		PMString pmsClassification;
-		TextIterator firstCh (textModel, inClassHeading.StartingOffset_());
-		TextIterator lastCh  (textModel, inClassHeading.EndingOffset_());
+        TextIterator firstCh (textModel, nStart);// inClassHeading.StartingOffset_());
+        TextIterator lastCh  (textModel, nEnd);//inClassHeading.EndingOffset_());
 		for (TextIterator iter = firstCh; iter != lastCh; iter++)
 		{
 			const UTF32TextChar characterCode = *iter;
@@ -543,7 +551,7 @@ void CL_TypesetContinuedLinesWorkhorse::TypesetAndPasteUpContinuedLine_(int32 in
 			InterfacePtr<IFrameListComposer> frameListComposer (
 										frameList, UseDefaultIID());
 			ASSERT (frameListComposer);
-			frameListComposer->RecomposeThruNthFrame (-1);
+			frameListComposer->RecomposeThruTextIndex(kInvalidTextIndex);
 
 			// If the story's overset, do something!
 			if (Utils<ITextUtils>()->IsOverset (frameList))
@@ -552,9 +560,8 @@ void CL_TypesetContinuedLinesWorkhorse::TypesetAndPasteUpContinuedLine_(int32 in
 			}
 		}
 	}
-
 	delete pageObj;
-	
+
 	LOG_END_FUNCTION;
 #undef LOG_CLASSIFIED_HEADING_TEXT
 }

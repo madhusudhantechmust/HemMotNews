@@ -56,8 +56,8 @@ bool HM_ContinuedLine::Typeset_()
 		if (textModelCmds)
 		{
 			PMString pmstr = text_ + "\r";
-			K2::shared_ptr<WideString> wideString (
-								new WideString (pmstr.GrabCString()));
+            boost::shared_ptr<WideString> wideString (
+								new WideString (pmstr.GetPlatformString ().c_str()));
             InterfacePtr<ICommand> insertTextCmd (
            							textModelCmds->InsertCmd (
            												0, wideString));
@@ -81,7 +81,7 @@ bool HM_ContinuedLine::Typeset_()
 				styleSheetHelper->ApplyStyleSheet_(textModel, head2StyleSheetUID);
 				
 				// Append the paragraph "continued" and style that, too.
-				K2::shared_ptr<WideString> continuedWideString (
+                boost::shared_ptr<WideString> continuedWideString (
 										new WideString ("continued"));
 				int32 storyLen = textModel->TotalLength ();
 				InterfacePtr<ICommand> insertTextCmd2 (

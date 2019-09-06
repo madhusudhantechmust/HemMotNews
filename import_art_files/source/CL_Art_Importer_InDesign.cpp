@@ -11,7 +11,7 @@
 #include "IPathUtils.h"
 #include "IGroupItemUtils.h"
 #include "IBlackBoxCommands.h"
-#include "IImportFileCmdData.h"
+#include "IImportExportFacade.h"
 #include "SDKFileHelper.h"
 
 #include "IFrameType.h"
@@ -360,7 +360,7 @@ bool CL_Art_Importer_InDesign::Import1Picture_(UIDRef & inUidRef,
 		if (sdkFileHelperObj.IsExisting ())
 		{
 			LOG ( "Graphics file exists");
-			LOG ( graphicsFullPath.GrabCString () );
+			LOG ( graphicsFullPath.GetPlatformString().c_str());
 			IDFile idFile (graphicsFullPath);
 
 			// Start a command sequence. This is a stack based command sequence 
@@ -379,6 +379,13 @@ bool CL_Art_Importer_InDesign::Import1Picture_(UIDRef & inUidRef,
 //			cmdSeq.SetState (kFailure);		// This is "typical" processing.
 
 			// Load the place gun.
+            URI tmpURI;
+            bool16 bHasClipping = kFalse;
+            Utils<IURIUtils>()->IDFileToURI (idFile, tmpURI);
+            Utils<Facade::IImportExportFacade> oImportExportFacade;
+            ErrorCode adobeStatus = oImportExportFacade->ImportAndLoadPlaceGun (
+                                                        inIDataBasePtr, tmpURI, kSuppressUI, kTrue, kFalse, kFalse, bHasClipping, IPlaceGun::kAddToBack);
+/*
 			InterfacePtr<ICommand> importCmd (
 						CmdUtils::CreateCommand (kImportAndLoadPlaceGunCmdBoss));
 			if (!importCmd)
@@ -436,8 +443,6 @@ bool CL_Art_Importer_InDesign::Import1Picture_(UIDRef & inUidRef,
 				goto cleanup;
 			}
 
-			URI tmpURI;
-			Utils<IURIUtils>()->IDFileToURI (idFile, tmpURI);
 			importResourceCmdData->Set (inIDataBasePtr, tmpURI, kSuppressUI);
 			ErrorCode err = CmdUtils::ProcessCommand (importCmd);
 // END 2011 REWRITE
@@ -452,6 +457,7 @@ bool CL_Art_Importer_InDesign::Import1Picture_(UIDRef & inUidRef,
 // 				goto cleanup;				// Just exit on error
 // 			}
 			ErrorCode adobeStatus = CmdUtils::ProcessCommand (importCmd);
+ */
 			if (adobeStatus == kSuccess)
 			{
 				status = true;
@@ -468,7 +474,7 @@ bool CL_Art_Importer_InDesign::Import1Picture_(UIDRef & inUidRef,
 									CmdUtils::CreateCommand (kReplaceCmdBoss) );
 			InterfacePtr<IReplaceCmdData> replaceData (
 									replaceCmd, IID_IREPLACECMDDATA);
-			InterfacePtr<IBoolData> hasClippingFrame (importCmd, UseDefaultIID());
+//			InterfacePtr<IBoolData> hasClippingFrame (importCmd, UseDefaultIID());
 			
 			// Need to get the place gun here so that we can set 
 			// the item that has been loaded for placing
@@ -476,7 +482,7 @@ bool CL_Art_Importer_InDesign::Import1Picture_(UIDRef & inUidRef,
 								inIDataBasePtr->GetRootUID(), UseDefaultIID());
 			replaceData->Set (inIDataBasePtr, inUidRef.GetUID (), 
 								placeGun->GetFirstPlaceGunItemUID (), // was GetItemUID() in CS2
-								hasClippingFrame->GetBool ());
+								bHasClipping);
 /*
 Old CS2 code
 			if (CmdUtils::ProcessCommand(replaceCmd) != kSuccess)
@@ -518,7 +524,7 @@ Old CS2 code
 		else
 		{
 			LOG ( "Requested file does not exist");
-			LOG ( graphicsFullPath.GrabCString () );
+			LOG ( graphicsFullPath.GetPlatformString().c_str() );
 			status = false;					// Failed to import anything
 		}
 	}

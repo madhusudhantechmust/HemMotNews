@@ -56,6 +56,7 @@ public:
 
 	// Page makeup -- determine ad geometry and place ads
 					// Big, ugly containing loop, does it all
+    using Basic_Page::PasteUp_;
 	virtual void	PasteUp_(std::vector<CL_Display_Ad> & adsToPlaceVector);
 	
 	// This just places ads -- it calls methods in derived classes for creating 

@@ -22,7 +22,8 @@
 #include "IHierarchy.h"
 #include "ISpread.h"
 #include "IDataBase.h"
-#include "PageItemUtils.h"
+#include "IPasteboardUtils.h"
+#include "TransformUtils.h"
 
 /* ---------------------------- P R O T O T Y P E S ----------------------------- */
 
@@ -57,7 +58,7 @@ bool GetPageBoundsForItem_( IPMUnknown* pageItem,PMRect& pageItemBounds ) {
 		if ( iHierarchy == NULL ) break;
 
 		// get the spread the item is on
-		InterfacePtr<ISpread> parentSpread(PageItemUtils::QuerySpread(iHierarchy));
+        InterfacePtr<ISpread> parentSpread(Utils<IPasteboardUtils>()->QuerySpread(iHierarchy));
 		if ( parentSpread == NULL ) break;
 
 		InterfacePtr<IGeometry> iGeometry(pageItem,UseDefaultIID());
@@ -65,7 +66,7 @@ bool GetPageBoundsForItem_( IPMUnknown* pageItem,PMRect& pageItemBounds ) {
 
 		// page item bounds in pasteboard coordinates
 		PMRect pathBox = iGeometry->GetStrokeBoundingBox();
-		::InnerToPasteboard( iGeometry,&pathBox );
+		TransformInnerRectToPasteboard(iGeometry,&pathBox );
 
 		// we use center of page item to determine which page this item is on
 		PMPoint center = pathBox.GetCenter();
@@ -135,10 +136,10 @@ ErrorCode GetFrameGeometryInPageCoordinates_(const UIDRef & inFrameUIDRef,
 		PMRect strokeBox = iGeometry->GetStrokeBoundingBox();
 
 		// convert path bounds to pasteboard coords
-		InnerToPasteboard (iGeometry, &pathBox );
+		TransformInnerRectToPasteboard(iGeometry, &pathBox );
 
 		// convert stroke bounds to pasteboard coords
-		InnerToPasteboard ( iGeometry, &strokeBox );
+		TransformInnerRectToPasteboard ( iGeometry, &strokeBox );
 		
 		// Give the caller what he wants
 		outFrameRect = strokeBox;

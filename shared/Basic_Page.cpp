@@ -120,10 +120,10 @@ void Basic_Page::ComputeAndStorePageMeasurements_() throw (PMString) {
 	
 	// Get a pointer to the page column data, and extract the count of page 
 	// cols, the width of a single gutter, and measure consumed by all gutters.
-	IColumns* iColumns = pageList->QueryPageColumns (uid_);
+	IColumns* iColumns = pageList->Query__PageColumns (uid_);
 	if (!iColumns) throw ("could not get IColumns");
-	columnCount_ = iColumns->GetNumberColumns ();	// Number of page cols
-	gutterWidth_ = iColumns->GetGutter ();			// Width of a single gutter
+	columnCount_ = iColumns->GetNumberColumns_ ();	// Number of page cols
+	gutterWidth_ = iColumns->GetGutter_ ();			// Width of a single gutter
 	PMReal totalGutterWidth = (columnCount_ - 1) * 
 									gutterWidth_;	// Measure consumed by gutters
 	
@@ -131,7 +131,7 @@ void Basic_Page::ComputeAndStorePageMeasurements_() throw (PMString) {
 	// each one and accumulate the total.  InDesign expresses these values as 
 	// DISPLACEMENTS from the page margins.  They are not absolute.
 	PMRealList outputColumns;
-	iColumns->GetColumns (&outputColumns);
+	iColumns->GetColumns_ (&outputColumns);
 	PMRealList::iterator p = outputColumns.begin ();
 	PMReal x1, x2;
 	int i = 1;

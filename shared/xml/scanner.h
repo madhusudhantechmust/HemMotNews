@@ -47,7 +47,7 @@ private:
 class TTextScanner : public TScanner {
 public:
 	TTextScanner (TTextInBuffer* pBuffer);
-	virtual ~TTextScanner () { delete pTextInBuffer; }
+	virtual ~TTextScanner () { }
 	virtual TToken* Get ();
 	virtual TToken* Get (ParserState inParserState);
 	virtual TToken* GetCharacterData ();

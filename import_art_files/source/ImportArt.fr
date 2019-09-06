@@ -38,7 +38,7 @@
 #include "WorkspaceID.h"
 #include "WidgetID.h"
 #include "BuildNumber.h"
-
+#include "PlugInModel_UIAttributes.h"
 
 // Project includes:
 #include "ImportArtID.h"
@@ -60,6 +60,7 @@ resource PluginVersion (kSDKDefPluginVersionResourceID)
 	kImportArtCurrentMajorFormatNumber, kImportArtCurrentMinorFormatNumber,
 	{ kInDesignProduct, kInCopyProduct},
 	{ kWildFS },
+    kModelPlugIn,
 	kImportArtVersion
 };
 
@@ -163,7 +164,7 @@ resource LocaleIndex ( kSDKDefStringsResourceID)
 		kWildFS, k_daDK, kSDKDefStringsResourceID + index_enUS
 		kWildFS, k_nlNL, kSDKDefStringsResourceID + index_enUS
 		kWildFS, k_itIT, kSDKDefStringsResourceID + index_enUS
-		kWildFS, k_noNO, kSDKDefStringsResourceID + index_enUS
+//		kWildFS, k_noNO, kSDKDefStringsResourceID + index_enUS
 		kWildFS, k_fiFI, kSDKDefStringsResourceID + index_enUS
 		kInDesignJapaneseFS, k_jaJP, kSDKDefStringsResourceID + index_jaJP
 	}

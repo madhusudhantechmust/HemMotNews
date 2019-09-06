@@ -38,6 +38,7 @@
 #include "WorkspaceID.h"
 #include "WidgetID.h"
 #include "BuildNumber.h"
+#include "PlugInModel_UIAttributes.h"
 
 #include "InterfaceColorDefines.h"
 #include "IControlViewDefs.h"
@@ -65,6 +66,7 @@ resource PluginVersion (kSDKDefPluginVersionResourceID)
 	kNCPrefsCurrentMajorFormatNumber, kNCPrefsCurrentMinorFormatNumber,
 	{ kInDesignProduct, kInCopyProduct},
 	{ kWildFS },
+    kUIPlugIn,
 	kNCPrefsVersion
 };
 
@@ -235,7 +237,7 @@ resource LocaleIndex ( kSDKDefStringsResourceID)
 		kWildFS, k_daDK, kSDKDefStringsResourceID + index_enUS
 		kWildFS, k_nlNL, kSDKDefStringsResourceID + index_enUS
 		kWildFS, k_itIT, kSDKDefStringsResourceID + index_enUS
-		kWildFS, k_noNO, kSDKDefStringsResourceID + index_enUS
+//		kWildFS, k_noNO, kSDKDefStringsResourceID + index_enUS
 		kWildFS, k_fiFI, kSDKDefStringsResourceID + index_enUS
 		kInDesignJapaneseFS, k_jaJP, kSDKDefStringsResourceID + index_jaJP
 	}

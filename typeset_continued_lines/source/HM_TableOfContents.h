@@ -21,6 +21,7 @@
 #pragma once
 
 #include <vector>
+#include <fstream>
 #include "IDFile.h"
 #include "TextIterator.h"
 #include "IPageList.h"
@@ -92,8 +93,7 @@ protected:
 							HM_ClassifiedHeading& inClassHeading, 
 							UIDRef inStoryUIDRef);
 	IDFile	tocFile_;
-	FSSpec	outputFileMacFSSpec_;
-	short	tocFileRefNum_;
+    std::fstream    m_oTOCFile;
 	bool	okToProcess_;
 	vector<HM_ClassifiedHeading>	classifiedHeadingsVector_;
 	int32 docPageCount_;

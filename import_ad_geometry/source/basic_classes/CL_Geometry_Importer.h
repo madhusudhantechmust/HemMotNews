@@ -92,11 +92,11 @@ protected:
 ////////////////////////////////////////////
 #if 0
 	// Keep track of area on each page consumed by ads.
-#if PRODUCT == QUARKXTENSION
+#if HNM_PRODUCT == QUARKXTENSION
 	virtual void StoreArea_(long adWidth, long adHeight, int16 folio);
-#elif PRODUCT == INDESIGN_PLUGIN
+#elif HNM_PRODUCT == INDESIGN_PLUGIN
 #else
-	#error	PRODUCT not defined!
+	#error	HNM_PRODUCT not defined!
 #endif
 
 

@@ -20,8 +20,8 @@ using namespace std;
 
 #include "ITextModel.h"
 #include "IAttributeStrand.h"
-#include "LayoutUIUtils.h"
-#include "LayoutUtils.h"
+#include "ILayoutUIUtils.h"
+#include "ILayoutUtils.h"
 #include "IDocument.h"
 #include "IStoryList.h"
 #include "IStyleInfo.h"
@@ -37,9 +37,11 @@ using namespace std;
 #include "WFPID.h"
 #include "TextStoryAccessTypes.h"
 #include "SDKFileHelper.h"
+#include "FileUtils.h"
 
 #include "HM_ClassifiedHeading.h"
 #include "HM_TableOfContents.h"
+#include "ImportGeomID.h"
 #include "CL_Log_File.h"
 #include "global_data.h"
 
@@ -48,7 +50,7 @@ using namespace std;
 //----------------------------------------------------------------------------------
 HM_TableOfContents::HM_TableOfContents ()
 	:	okToProcess_(false)
-	,	tocFileRefNum_(0), docPageCount_(-1)
+	,	m_poFile(NULL), docPageCount_(-1)
 {
 
 }
@@ -78,9 +80,13 @@ void HM_TableOfContents::WriteXPressTagsFileInitialization_()
 	PMString xpressTagsInitString ("<v2.05><e0>");
 	xpressTagsInitString += "\r";
 	xpressTagsInitString += "@TOC:";
-	char* s = xpressTagsInitString.GrabCString ();
+	const char* s = xpressTagsInitString.GetPlatformString().c_str();
 	long byteCount = ::strlen (s);
+    // Deprecated block commented by TechMust - MJ 20190627
+    /*
 	::FSWrite ( tocFileRefNum_, &byteCount, s );
+    */
+    fwrite (s, byteCount, 1, m_poFile);
 }
 
 /*================================================================================*/
@@ -101,7 +107,7 @@ void HM_TableOfContents::ScanDocumentText_() throw (char*) {
 	try {
 		// Iterate over all the stories in the document.  NewsCAD works only 
 		// with the frontmost document -- the current one.
-		IDocument* iDocument = ::GetFrontDocument ();			// LayoutUIUtils.h
+		IDocument* iDocument = Utils<ILayoutUIUtils>()->GetFrontDocument ();			// LayoutUIUtils.h
 		if (!iDocument) throw ("Could not get IDocument*.");
 
 		// Get the document's database
@@ -124,7 +130,7 @@ void HM_TableOfContents::ScanDocumentText_() throw (char*) {
 		char* s = new char [256];
 		PMString documentName;
 		iDocument->GetName(documentName);
-		sprintf (s, "Stories in document %s", documentName.GrabCString());
+		sprintf (s, "Stories in document %s", documentName.GetPlatformString().c_str());
 		LOG (s);
 		delete [] s;
 #endif
@@ -181,7 +187,7 @@ void HM_TableOfContents::ProcessStory_(UIDRef inStoryUIDRef,
 #if VERSION == IN_HOUSE
 	#define	LOG_CLASSIFIED_HEADING_TEXT											\
 			::sprintf ( logstr, "<ClassifiedHeading>%s</ClassifiedHeading>",	\
-								pmsClassification.GrabCString () );				\
+								pmsClassification.GetPlatformString().c_str() );				\
 			LOG (logstr)
 	#define	LOG_FRAME_INDICES													\
 			::sprintf (logstr, "<FrameIndices first=\"%d\" last=\"%d\"/>", 		\
@@ -252,7 +258,7 @@ void HM_TableOfContents::ProcessStory_(UIDRef inStoryUIDRef,
 		}
 		
 		const PMString& styleName = styleInfo->GetName ();
-		LOG_TEXT_RUN_DATA (position, length, styleName.GrabCString());
+		LOG_TEXT_RUN_DATA (position, length, styleName.GetPlatformString().c_str());
 
 		// Is that style the interesting style?
 		const PMString head1StyleName ("Head1");
@@ -317,7 +323,7 @@ void HM_TableOfContents::ProcessStory_(UIDRef inStoryUIDRef,
 				InterfacePtr<IMasterPage> masterPage (unknown2, IID_IMASTERPAGE);
 				if (masterPage)
 				{
-					IDocument* frontDoc = ::GetFrontDocument ();
+					IDocument* frontDoc = Utils<ILayoutUIUtils>()->GetFrontDocument ();
 					
 					// Add a string describing the page.
 					if (frontDoc)
@@ -333,7 +339,7 @@ void HM_TableOfContents::ProcessStory_(UIDRef inStoryUIDRef,
 							WriteRecord_(pmsClassification, pageStr);
 
 							::strcat (logstr, "  GetPageString=\"");
-							::strcat (logstr, pageStr.GrabCString ());
+							::strcat (logstr, pageStr.GetPlatformString().c_str());
 							::strcat (logstr, "\"");
 						}
 					}
@@ -384,8 +390,10 @@ void HM_TableOfContents::OpenOutputFile_()
 	// member and returns true.  If he Cancels, it just returns false.
 	okToProcess_ = false;						// CTOR already did this, but ...
 	bool doesFileExist;
-	if (ChooseOutputFile_(doesFileExist))
+    ChooseOutputFile_(doesFileExist);
+    m_poFile = FileUtils::OpenFile (tocFile_, "w");
 	{
+        /* Deprecated block commented by TechMust - MJ 20190627
 		// Try to create (or if it already exists, open) the file.
 		OSErr err = noErr;
 		if (!doesFileExist)										// Already on disk?
@@ -428,7 +436,7 @@ void HM_TableOfContents::OpenOutputFile_()
 				return;
 			}
 		}
-
+*/
 		// If we get this far, all is well.
 		okToProcess_ = true;
 	}
@@ -440,6 +448,9 @@ void HM_TableOfContents::OpenOutputFile_()
 void HM_TableOfContents::CloseOutputFile_()
 {
 	LOG_BEGIN_FUNCTION;
+    fclose (m_poFile);
+    m_poFile = NULL;
+/* Deprecated block commented by TechMust - MJ 20190627
 	OSErr err = ::FSClose (tocFileRefNum_);
 	if (err)
 	{
@@ -453,6 +464,7 @@ void HM_TableOfContents::CloseOutputFile_()
 	{
 		LOG ("<!-- TOC file closed normally. -->");
 	}
+ */
 	LOG_END_FUNCTION;
 }
 
@@ -469,7 +481,7 @@ bool HM_TableOfContents::ChooseOutputFile_(bool & ioDoesFileExist)
 	outputFileChooser.SetTitle (pmsTitle);
 	
 	// Compute a default filename.
-	IDocument* iDocument = ::GetFrontDocument ();			// LayoutUIUtils.h
+	IDocument* iDocument = Utils<ILayoutUIUtils>()->GetFrontDocument ();			// LayoutUIUtils.h
 	if (!iDocument) throw ("Could not get IDocument*.");
 	PMString pmsOutFileName;
 	iDocument->GetName (pmsOutFileName);
@@ -484,7 +496,7 @@ bool HM_TableOfContents::ChooseOutputFile_(bool & ioDoesFileExist)
 		pmsOutFileName.Append (pms1);
 	}
 
-	LOG (pmsOutFileName.GrabCString());
+	LOG (pmsOutFileName.GetPlatformString().c_str());
 	outputFileChooser.SetFilename (pmsOutFileName);
 	
 	// Now put the dialog on the screen.  Runs until user OKs or Cancels.
@@ -494,10 +506,14 @@ bool HM_TableOfContents::ChooseOutputFile_(bool & ioDoesFileExist)
 	{
 		// Save the InDesign file object and fill in a Mac FSSpec for the file.
 		tocFile_ = outputFileChooser.GetIDFile ();
-		outputFileMacFSSpec_.vRefNum = tocFile_.GetVRefNum ();
+        // FSSpec and related functions deprecated by Apple
+        // Comment out the following block
+/*
+        outputFileMacFSSpec_.vRefNum = tocFile_.GetVRefNum ();
 		outputFileMacFSSpec_.parID = tocFile_.GetParId ();
 		PMString pmsFileName = tocFile_.GetFSSpecName ();
 		pmsFileName.GetPString (outputFileMacFSSpec_.name, 64);
+ */
 		ioDoesFileExist = outputFileChooser.IsExisting ();
 		return true;
 	}
@@ -509,9 +525,13 @@ bool HM_TableOfContents::ChooseOutputFile_(bool & ioDoesFileExist)
 void HM_TableOfContents::WriteRecord_(PMString & inClassifiedHeading, 
 										PMString & inPageStr) {
 	PMString pmsOut = inClassifiedHeading + "\t" + inPageStr + "\r";
-	char* outstr = pmsOut.GrabCString ();
+	const char* outstr = pmsOut.GetPlatformString().c_str();
 	long byteCount = ::strlen (outstr);
-	::FSWrite (tocFileRefNum_, &byteCount, outstr);
+    // Deprecated block commented by TechMust - MJ 20190627
+	/*
+    ::FSWrite (tocFileRefNum_, &byteCount, outstr);
+    */
+    fwrite (outstr, byteCount, 1, m_poFile);
 }
 
 
@@ -522,7 +542,7 @@ void HM_TableOfContents::MakeContinuedLines_() throw (char*) {
 	try {
 		// Iterate over all the stories in the document.  NewsCAD works only 
 		// with the frontmost document -- the current one.
-		IDocument* iDocument = ::GetFrontDocument ();			// LayoutUIUtils.h
+		IDocument* iDocument = Utils<ILayoutUIUtils>()->GetFrontDocument ();			// LayoutUIUtils.h
 		if (!iDocument) throw ("Could not get IDocument*.");
 
 		// Get the document's database
@@ -657,7 +677,7 @@ void HM_TableOfContents::FindAllClassifiedHeadings_(
 		}
 		
 		const PMString& styleName = styleInfo->GetName ();
-		LOG_TEXT_RUN_DATA (position, length, styleName.GrabCString());
+		LOG_TEXT_RUN_DATA (position, length, styleName.GetPlatformString().c_str());
 
 		// Is that style the interesting style?
 		const PMString head1StyleName ("Head1");
@@ -821,7 +841,7 @@ int HM_TableOfContents::GetClassificationStartPageNum_(
 		InterfacePtr<IMasterPage> masterPage (unknown2, IID_IMASTERPAGE);
 		if (masterPage)
 		{
-			IDocument* frontDoc = ::GetFrontDocument ();
+			IDocument* frontDoc = Utils<ILayoutUIUtils>()->GetFrontDocument ();
 //#if 0			
 			// 
 			if (frontDoc)
@@ -901,7 +921,7 @@ void HM_TableOfContents::TypesetAndPasteUpContinuedLine_(int32 inPageNum,
 	LOG_TAG_AND_VALUE ("LastPageOfCurrentClassification", inNextClassFirstPageNum);
 	
 	// Setup a page object for the page where the continued line will go.
-	InterfacePtr<IPageList> pageList (::GetFrontDocument (), UseDefaultIID());
+	InterfacePtr<IPageList> pageList (Utils<ILayoutUIUtils>()->GetFrontDocument (), UseDefaultIID());
 	UID currPageUID = pageList->GetNthPageUID (inPageNum);
 	PMString pageStr;
 	pageList->GetPageString (currPageUID, &pageStr);
@@ -948,7 +968,7 @@ void HM_TableOfContents::TypesetAndPasteUpContinuedLine_(int32 inPageNum,
 			InterfacePtr<IFrameListComposer> frameListComposer (
 										frameList, UseDefaultIID());
 			ASSERT (frameListComposer);
-			frameListComposer->RecomposeThruNthFrame (-1);
+			frameListComposer->RecomposeThruTextIndex(kInvalidTextIndex);
 
 			// If the story's overset, do something!
 			if (Utils<ITextUtils>()->IsOverset (frameList))

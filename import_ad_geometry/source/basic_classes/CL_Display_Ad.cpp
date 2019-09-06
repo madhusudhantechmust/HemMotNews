@@ -570,7 +570,7 @@ void CL_Display_Ad::FormatForAdReport_(std::string & adRec)
 	pmstr.Append ('\r');							// Mark end of record
 	
 	// Set output value for caller.
-	adRec = pmstr.GrabCString ();
+	adRec = pmstr.GetPlatformString().c_str ();
 }
 
 
